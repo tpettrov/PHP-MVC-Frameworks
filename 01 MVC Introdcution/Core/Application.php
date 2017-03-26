@@ -81,6 +81,8 @@ class Application
 
     public function start()
     {
+
+        $params = $this->mvcContext->getParams();
         $controllerFullQualifiedName = "Controllers\\" . ucfirst($this->mvcContext->getControllerName());
         $controller = $this->resolve($controllerFullQualifiedName);
 
