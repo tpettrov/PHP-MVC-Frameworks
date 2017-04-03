@@ -9,8 +9,10 @@
 namespace Controllers;
 
 
+use DTO\ProfileEditViewModel;
 use DTO\UserViewModel;
 use ViewEngine\ViewInterface;
+use DTO\ProfileEditBindingModel;
 
 class Users
 {
@@ -21,6 +23,22 @@ class Users
         $viewModel = new UserViewModel($firstName, $lastName);
         $view->render($viewModel);
 
+
+    }
+
+    public function edit($id, ProfileEditBindingModel $model, ViewInterface $view){
+
+        $viewModel = new ProfileEditViewModel(
+            $id,
+            $model->getUsername(),
+            $model->getPassword(),
+            $model->getEmail(),
+            $model->getBirthday()
+
+
+        );
+
+        $view->render($viewModel);
 
     }
 

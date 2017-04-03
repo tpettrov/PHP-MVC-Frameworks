@@ -1,0 +1,13 @@
+
+    <form name="register" action="{{ path('register')}}" method="post">
+
+        <input type="text" name="User[email]"/>
+        <input type="text" name="User[password]"/>
+        <input type="text" name="User[fullName]"/>
+        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('/register') }}" /> #}
+
+        <input type="submit"/>
+
+
+    </form>
+

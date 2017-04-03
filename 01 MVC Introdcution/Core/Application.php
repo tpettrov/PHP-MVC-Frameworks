@@ -93,9 +93,21 @@ class Application
         for ($i = $count; $i<count($refParams); $i++){
 
             $argument = $refParams[$i];
-            $argumentInterface =  $argument->getClass();
-            $argumentClass = $this->dependencies[$argumentInterface->getName()];
-            $params[] = $this->resolve($argumentClass);
+            $argumentInterface =  $argument->getClass()->getName();
+
+            if (array_key_exists($argumentInterface, $this->dependencies)) {
+
+                $argumentClass = $this->dependencies[$argumentInterface];
+                $params[] = $this->resolve($argumentClass);
+
+            } else {
+
+                $bindingModel = new $argumentInterface;
+                $this->bindData($_POST, $bindingModel);
+                $params[] = $bindingModel;
+            }
+            //$argumentClass = $this->dependencies[$argumentInterface->getName()];
+            //$params[] = $this->resolve($argumentClass);
 
         }
 
@@ -104,7 +116,24 @@ class Application
 
     }
 
+        public  function bindData(array $data, $object){
 
+
+        $refCLass = new \ReflectionClass($object);
+        $fields = $refCLass->getProperties();
+
+        foreach ($fields as $field) {
+
+            $field->setAccessible(true);
+            if (array_key_exists($field->getName(), $data)){
+
+                $field->setValue($object, $data[$field->getName()]);
+
+            }
+
+        }
+
+        }
 
 
 
