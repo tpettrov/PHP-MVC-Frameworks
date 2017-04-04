@@ -87,7 +87,7 @@ class Article
      *
      * @return Article
      */
-    public function setAuthor(User $author = null)
+    public function setAuthor(User $author = null) //
     {
         $this->author = $author;
 

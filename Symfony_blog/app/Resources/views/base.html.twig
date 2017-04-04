@@ -23,7 +23,7 @@
         <div class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="{{ path('blog_index') }}" class="navbar-brand">SOFTUNI BLOG</a>
+                    {#<a href="{{ path('blog_index') }}" class="navbar-brand">SOFTUNI BLOG</a>#}
                     {% if app.user %}
                         <a href="{{ path('article_create') }}" class="navbar-brand">
                             Create Article
@@ -39,18 +39,18 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
                             <li>
-                                <a href="{{ path('user_profile') }}">
+                                {#<a href="{{ path('user_profile') }}">#}
                                     My Profile
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ path('security_logout') }}">
+                                {#<a href="{{ path('security_logout') }}">#}
                                     Logout
                                 </a>
                             </li>
                         {% else %}
                             <li>
-                                <a href="{{ path('user_register') }}">
+                                {#<a href="{{ path('user_register') }}">#}
                                     REGISTER
                                 </a>
                             </li>
