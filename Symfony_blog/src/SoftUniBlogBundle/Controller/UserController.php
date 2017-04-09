@@ -9,12 +9,11 @@ use SoftUniBlogBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class UserController extends Controller
 {
     /**
-     * @Route("/register", name="register")
+     * @Route("/register", name="user_register")
      * @param Request $request
-     * @Method({"post", "get"})
      * @return \Symfony\Component\HttpFoundation\Response
      *
      */
@@ -22,14 +21,12 @@ class DefaultController extends Controller
     {
 
         $user = new User();
-
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted()) {
-
 
 
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
@@ -43,7 +40,8 @@ class DefaultController extends Controller
 
         }
 
-        return $this->render('default/register.html.twig');
+        return $this->render('default/register.html.twig',
+            array('form' => $form->createView()));
 
     }
 }

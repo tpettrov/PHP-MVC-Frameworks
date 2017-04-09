@@ -12,7 +12,7 @@ class ArticleController extends Controller
 {
 
     /**
-     * @param Request $request
+     *
      * @Route("/article/create", name="article_create")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -30,12 +30,14 @@ class ArticleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            //$article->setAuthor('Anton');
+            $article->setAuthor($this->getUser());
+            $article->setSummary();
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
+            var_dump($article);
             $em->flush();
 
-            return $this->redirectToRoute('register');
+            return $this->redirectToRoute('blog_index');
 
         }
 
