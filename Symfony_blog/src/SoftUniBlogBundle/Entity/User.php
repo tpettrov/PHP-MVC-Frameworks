@@ -5,14 +5,18 @@ namespace SoftUniBlogBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SoftUniBlogBundle\Entity\Role;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="SoftUniBlogBundle\Repository\UserRepository")
+ * @ExclusionPolicy("all")
  */
 class User implements UserInterface
 {

@@ -3,12 +3,17 @@
 namespace SoftUniBlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+
 
 /**
  * Article
  *
  * @ORM\Table(name="articles")
  * @ORM\Entity(repositoryClass="SoftUniBlogBundle\Repository\ArticleRepository")
+ * @ExclusionPolicy("all")
  */
 class Article
 {
@@ -32,6 +37,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255)
+     * @Expose
      */
     private $content;
 
@@ -39,6 +45,7 @@ class Article
      * @var \DateTime
      *
      * @ORM\Column(name="dateAdded", type="datetime")
+     * @Expose
      */
     private $dateAdded;
 
@@ -63,6 +70,7 @@ class Article
      *
      * @ORM\ManyToOne(targetEntity="SoftUniBlogBundle\Entity\User", inversedBy="articles")
      * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
+     * @Expose
      */
 
     private $author;
