@@ -1,0 +1,4 @@
+services:
+#    soft_uni_blog_api.example:
+#        class: SoftUniBlogApiBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
