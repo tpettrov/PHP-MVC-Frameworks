@@ -82,6 +82,13 @@ class User implements UserInterface
         $this->roles = new ArrayCollection();
     }
 
+    /**
+     * @var decimal
+     * @ORM\Column(name="cash", type="decimal", precision=5, scale=2)
+     */
+
+    private $cash;
+
 
     /**
      * Get id
@@ -282,6 +289,22 @@ class User implements UserInterface
     public function setRawPassword($rawPassword)
     {
         $this->rawPassword = $rawPassword;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCash()
+    {
+        return $this->cash;
+    }
+
+    /**
+     * @param mixed $cash
+     */
+    public function setCash($cash)
+    {
+        $this->cash = $cash;
     }
 }
 

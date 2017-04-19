@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Money;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+
+     const INITIAL_CASH = 50.00;
 
     /**
      * @Route("/register", name="register_user")
@@ -30,20 +33,19 @@ class UserController extends Controller
                 ->encodePassword($user, $user->getRawPassword());
             $user->setPassword($password);
 
-            // set default USER_ROLE to any newly registerd
+            // set default USER_ROLE to any newly registered
 
             $roleRepository = $this->getDoctrine()->getRepository(Role::class);
             $userRole = $roleRepository->findOneBy(['name' => 'ROLE_USER']);
             $user->addRole($userRole);
+            $user->setCash(self::INITIAL_CASH);
 
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-
             $this->addFlash('success', 'Registration successful! You are ready to log in...');
-
 
             return $this->redirectToRoute('login_user');
         }
