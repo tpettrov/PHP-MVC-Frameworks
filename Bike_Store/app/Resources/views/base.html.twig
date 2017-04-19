@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+<body>
+    <header class="panel panel-default">
+        <div class="panel-heading">
+        {% block header %}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p>Welcome, {{ app.user.username }} !</p>
+                <a href="{{ path('logout') }}">Logout</a>
+            {% else %}
+
+            <a href="{{ path('register_user') }}">Register</a>
+                <a href="{{ path('login_user') }}">Login</a>
+
+            {% endif %}
+
+
+
+        {% endblock %}
+        </div>
+    </header>
+
+    {% for type, flash_messages in app.session.flashBag.all %}
+        {% for flash_message in flash_messages %}
+            <div class="alert alert-{{ type }}">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+        {% block content %}{% endblock %}
+
+
+
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                {% block footer %}
+                <p>Bike Store 2017. All rights reserved. </p>
+                {% endblock %}
+            </div>
+        </div>
+
+</body>
+</html>
