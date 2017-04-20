@@ -83,7 +83,7 @@ class User implements UserInterface
     }
 
     /**
-     * @var decimal
+     *
      * @ORM\Column(name="cash", type="decimal", precision=5, scale=2)
      */
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,18 @@ class Category
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="category")
+     *
+     */
+
+    private $products;
+
+    public function __construct() {
+        $this->products = new ArrayCollection();
+    }
 
 
     /**
@@ -59,6 +72,27 @@ class Category
      * @return string
      */
     public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+    public function __toString()
     {
         return $this->name;
     }
