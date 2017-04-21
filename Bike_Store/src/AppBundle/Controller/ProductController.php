@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -10,10 +11,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Product controller.
  *
- * @Route("product")
+ * @Route("bikes")
  */
 class ProductController extends Controller
 {
+
+
+    /**
+     * Lists all product entities.
+     *
+     * @Route("/{category_name}", name="product_by_category")
+     * @Method("GET")
+     *
+     */
+
+    public function  showByCategory (string $category_name){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $neededCategory = $em->getRepository('AppBundle:Category')->findOneBy(['name' => $category_name]);
+
+        $products = $em->getRepository('AppBundle:Product')->findBy(['category' => $neededCategory->getId()]);
+
+        return $this->render('product/index.html.twig', array(
+            'products' => $products,
+        ));
+
+    }
+
+
     /**
      * Lists all product entities.
      *
@@ -133,4 +159,8 @@ class ProductController extends Controller
             ->getForm()
         ;
     }
+
+
+
+
 }

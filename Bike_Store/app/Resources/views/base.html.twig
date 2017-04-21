@@ -8,26 +8,38 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-<body>
-    <header class="panel panel-default">
-        <div class="panel-heading">
-        {% block header %}
 
+<nav class="navbar navbar-inverse navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Bike Store</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+        </ul>
+        {#{% block header %}#}
+            <ul class="nav navbar-nav navbar-right">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <p>Welcome, {{ app.user.username }} ! You have: {{app.user.cash}} BGN</p>
-                <a href="{{ path('logout') }}">Logout</a>
+                <li><p class="navbar-text">Welcome, {{ app.user.username }} ! You have: {{app.user.cash}} BGN</p></li>
+            <li><a href="{{ path('logout') }}">Logout</a></li>
             {% else %}
 
-            <a href="{{ path('register_user') }}">Register</a>
-                <a href="{{ path('login_user') }}">Login</a>
+
+            <li><a href="{{ path('register_user') }}">Register</a></li>
+            <li><a href="{{ path('login_user') }}">Login</a></li>
+            </ul>
 
             {% endif %}
 
+        {#{% endblock %}#}
 
 
-        {% endblock %}
-        </div>
-    </header>
+            </div>
+        </nav>
+
+
+    <body style="padding-top: 65px; padding-bottom: 65px">
+<div>
 
     {% for type, flash_messages in app.session.flashBag.all %}
         {% for flash_message in flash_messages %}
@@ -37,14 +49,20 @@
         {% endfor %}
     {% endfor %}
 
+</div>
+
+
+            {{ render(controller('AppBundle:Home:renderCategories')) }}
+
+
         {% block content %}{% endblock %}
 
 
 
-        <div class="panel panel-default">
-            <div class="panel-footer">
+        <div class="navbar navbar-inverse navbar navbar-fixed-bottom">
+            <div class="container-fluid">
                 {% block footer %}
-                <p>Bike Store 2017. All rights reserved. </p>
+                <p class="navbar-text">Bike Store 2017. All rights reserved. </p>
                 {% endblock %}
             </div>
         </div>

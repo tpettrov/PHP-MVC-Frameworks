@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Products list</h1>
 
     <table>
@@ -41,7 +41,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('product_new') }}">Create a new product</a>
+            <a class="btn btn-primary" href="{{ path('product_new') }}">Create a new product</a>
         </li>
     </ul>
 {% endblock %}

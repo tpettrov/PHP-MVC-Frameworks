@@ -1,0 +1,13 @@
+<div class="navbar navbar-inverse navbar navbar-default" xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+
+            {% for category in categories %}
+
+                <li><a href="{{ path('product_by_category', {"category_name" : category.name})}}">{{ category.name | capitalize }}</a></li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
