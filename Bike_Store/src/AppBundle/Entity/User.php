@@ -78,6 +78,13 @@ class User implements UserInterface
 
     private $roles;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Cart", inversedBy="id")
+     * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
+     */
+
+    private $cart;
+
     public function __construct() {
         $this->roles = new ArrayCollection();
     }
@@ -305,6 +312,22 @@ class User implements UserInterface
     public function setCash($cash)
     {
         $this->cash = $cash;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param mixed $cart
+     */
+    public function setCart($cart)
+    {
+        $this->cart = $cart;
     }
 }
 
