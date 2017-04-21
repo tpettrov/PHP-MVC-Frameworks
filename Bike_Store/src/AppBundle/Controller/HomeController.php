@@ -26,7 +26,6 @@ class HomeController extends Controller
         $categories = $em->getRepository('AppBundle:Category')->findAll();
 
 
-
         return $this->render('default/categoryBar.html.twig', array(
            'categories' => $categories
         ));

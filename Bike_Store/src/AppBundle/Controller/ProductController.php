@@ -143,12 +143,14 @@ class ProductController extends Controller
     /**
      * Lists all product entities.
      *
-     * @Route("/{category_id}/{category_name}", name="product_by_category")
+     * @Route("/{category_name}/{category_id}", name="product_by_category")
      * @Method("GET")
      *
      */
 
-    public function  showByCategoryAction (string $category_id){
+    public function  showByCategoryAction (int $category_id){
+
+        //dump($request);exit;
 
         $em = $this->getDoctrine()->getManager();
 
