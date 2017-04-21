@@ -4,7 +4,7 @@
 
             {% for category in categories %}
 
-                <li><a href="{{ path('product_by_category', {"category_name" : category.name})}}">{{ category.name | capitalize }}</a></li>
+                <li><a href="{{ path('product_by_category', {"category_name" : category.name, 'category_id' : category.id})  }}">{{ category.name | upper }}</a></li>
 
             {% endfor %}
 
