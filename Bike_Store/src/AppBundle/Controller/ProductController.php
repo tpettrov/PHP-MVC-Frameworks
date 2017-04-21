@@ -11,13 +11,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Product controller.
  *
- * @Route("product")
+ * @Route("bikes")
  */
 class ProductController extends Controller
 {
-
-
-
 
 
     /**
@@ -40,7 +37,7 @@ class ProductController extends Controller
     /**
      * Creates a new product entity.
      *
-     * @Route("/new", name="product_new")
+     * @Route("/create", name="product_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -141,7 +138,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Lists all product entities.
+     * Lists all product entities by category.
      *
      * @Route("/{category_name}/{category_id}", name="product_by_category")
      * @Method("GET")
@@ -150,7 +147,6 @@ class ProductController extends Controller
 
     public function  showByCategoryAction (int $category_id){
 
-        //dump($request);exit;
 
         $em = $this->getDoctrine()->getManager();
 
