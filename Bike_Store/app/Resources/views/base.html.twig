@@ -20,7 +20,9 @@
         {#{% block header %}#}
             <ul class="nav navbar-nav navbar-right">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><p class="navbar-text">Welcome, {{ app.user.username }} ! You have: {{app.user.cash}} BGN</p></li>
+                <li><p class="navbar-text">Welcome, {{ app.user.username }}</p></li>
+                <li><a href="{{ path('logout') }}">Cart: {{ app.user.cart.getproductcount }}</a></li>
+                <li><p class="navbar-text">Money: {{app.user.cash}} BGN </p></li>
             <li><a href="{{ path('logout') }}">Logout</a></li>
             {% else %}
 

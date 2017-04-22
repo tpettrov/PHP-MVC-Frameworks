@@ -1,0 +1,51 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use AppBundle\Entity\Cart;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+/**
+ * Cart controller.
+ *
+ * @Route("cart")
+ */
+class CartController extends Controller
+{
+    /**
+     * Lists all cart entities.
+     *
+     * @Route("/", name="cart_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $carts = $em->getRepository('AppBundle:Cart')->findAll();
+
+        return $this->render('cart/index.html.twig', array(
+            'carts' => $carts,
+        ));
+    }
+
+    /**
+     * Finds and displays a cart entity.
+     *
+     * @Route("/{id}", name="cart_show")
+     * @Method("GET")
+     */
+    public function showAction(Cart $cart)
+    {
+
+        return $this->render('cart/show.html.twig', array(
+            'cart' => $cart,
+        ));
+    }
+
+
+
+
+}

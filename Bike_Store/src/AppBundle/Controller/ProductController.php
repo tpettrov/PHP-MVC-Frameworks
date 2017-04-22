@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Cart;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -69,10 +71,12 @@ class ProductController extends Controller
     public function showAction(Product $product)
     {
         $deleteForm = $this->createDeleteForm($product);
+        $addToCartFrom = $this->createAddToCartForm($product);
 
         return $this->render('product/show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
+            'addtocart_form' => $addToCartFrom->createView(),
         ));
     }
 
@@ -157,6 +161,45 @@ class ProductController extends Controller
             'products' => $products,
         ));
 
+    }
+
+    /**
+     * @Route("/{id}", name="add_to_cart")
+     * @Method("PATCH")
+     */
+
+    public function addToCartAction(Request $request, Product $product){
+
+        $form = $this->createAddToCartForm($product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var User $user */
+            $user = $this->getUser();
+            /** @var Cart $userCart */
+            $userCart = $user->getCart();
+            $userCart->addProduct($product);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userCart);
+            $em->flush();
+
+
+        }
+
+        return $this->redirectToRoute('product_index');
+
+    }
+
+
+    private function createAddToCartForm(Product $product)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('add_to_cart', array('id' => $product->getId())))
+            ->setMethod('PATCH')
+            ->getForm()
+            ;
     }
 
 

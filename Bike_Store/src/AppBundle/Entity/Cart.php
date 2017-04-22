@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,7 +41,7 @@ class Cart
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Product")
      * @ORM\JoinTable(name="carts_products",
      *      joinColumns={@ORM\JoinColumn(name="cart_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", unique=false)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *      )
      */
 
@@ -48,7 +49,7 @@ class Cart
 
     public function __construct()
     {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
 
@@ -84,6 +85,30 @@ class Cart
     public function getStatus()
     {
         return $this->status;
+    }
+
+
+    /**
+     *
+     * add product to the Cart
+     *
+     * @param Product $product
+     * @return $this
+     */
+
+    public function addProduct(Product $product){
+
+        $this->products[] = $product;
+
+        return $this;
+
+    }
+
+
+    public function getProductCount(){
+
+        return count($this->products);
+
     }
 
 

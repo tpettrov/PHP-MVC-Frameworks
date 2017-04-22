@@ -37,6 +37,11 @@
             <a href="{{ path('product_index') }}">Back to the list</a>
         </li>
         <li>
+            {{ form_start(addtocart_form) }}
+            <input type="submit" value="Add To Cart">
+            {{ form_end(addtocart_form) }}
+        </li>
+        <li>
             <a class="btn btn-primary" href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
         </li>
         <li>
