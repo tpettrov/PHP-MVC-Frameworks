@@ -180,10 +180,12 @@ class ProductController extends Controller
             /** @var Cart $userCart */
             $userCart = $user->getCart();
             $userCart->addProduct($product);
+            $userCart->setStatus(true);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($userCart);
             $em->flush();
+
 
 
         }

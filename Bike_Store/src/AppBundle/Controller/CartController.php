@@ -42,8 +42,33 @@ class CartController extends Controller
 
         return $this->render('cart/show.html.twig', array(
             'cart' => $cart,
+            'products' => $cart->getProducts()
         ));
     }
+
+    /**
+     * @Route("/{id}/order", name="order_cart")
+     * @param Cart $cart
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+
+    public function orderCartAction(Cart $cart){
+
+        $cart->setStatus(false);
+        $cart->Empty();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cart);
+        $em->flush();
+
+        $this->addFlash('success', 'Order placed successfully ! Thank you !');
+        return $this->redirectToRoute('product_index');
+
+    }
+
+    /**
+     *
+     */
 
 
 

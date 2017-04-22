@@ -64,6 +64,16 @@ class Cart
     }
 
     /**
+     * Get status
+     *
+     * @return bool
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
      * Set status
      *
      * @param boolean $status
@@ -78,17 +88,6 @@ class Cart
     }
 
     /**
-     * Get status
-     *
-     * @return bool
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-
-    /**
      *
      * add product to the Cart
      *
@@ -96,7 +95,8 @@ class Cart
      * @return $this
      */
 
-    public function addProduct(Product $product){
+    public function addProduct(Product $product)
+    {
 
         $this->products[] = $product;
 
@@ -105,9 +105,31 @@ class Cart
     }
 
 
-    public function getProductCount(){
+    /**
+     * @return int
+     */
+    public function getProductCount()
+    {
 
         return count($this->products);
+
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProducts()
+    {
+
+        return $this->products;
+
+    }
+
+    public function Empty()
+    {
+
+        $this->products = new ArrayCollection();
+        return $this;
 
     }
 
