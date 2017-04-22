@@ -7,3 +7,8 @@ services:
     #service_name:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    security.authentication.success_handler:
+            class: AppBundle\LoginHandler\AuthenticationSuccessHandler
+            arguments: ['@security.http_utils', '@service_container', {}]
+            tags:
+                - { name: 'my.logger', channel: 'security'}

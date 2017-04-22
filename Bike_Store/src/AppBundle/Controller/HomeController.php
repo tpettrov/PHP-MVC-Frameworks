@@ -18,6 +18,12 @@ class HomeController extends Controller
         return $this->render('default/index.html.twig');
     }
 
+    /**
+     * extract categories from DB and display them on categoryBar view, to be loaded on BaseTemplate
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+
     public function renderCategoriesAction()
     {
 

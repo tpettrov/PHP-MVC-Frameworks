@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Cart;
 use AppBundle\Entity\Money;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
@@ -63,11 +64,13 @@ class UserController extends Controller
 
     public function loginAction(Request $request)
     {
+
         $authenticationUtils = $this->get('security.authentication_utils');
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
 
+        // get the login error if there is one
+
+        $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();

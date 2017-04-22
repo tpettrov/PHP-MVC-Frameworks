@@ -79,7 +79,7 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\OneToOne(targetEntity="Cart", inversedBy="id")
+     * @ORM\OneToOne(targetEntity="Cart", inversedBy="user")
      * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
      */
 
@@ -325,7 +325,7 @@ class User implements UserInterface
     /**
      * @param mixed $cart
      */
-    public function setCart($cart)
+    public function setCart(Cart $cart)
     {
         $this->cart = $cart;
     }
