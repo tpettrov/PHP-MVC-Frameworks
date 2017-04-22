@@ -36,6 +36,21 @@ class Cart
 
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Product")
+     * @ORM\JoinTable(name="carts_products",
+     *      joinColumns={@ORM\JoinColumn(name="cart_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", unique=false)}
+     *      )
+     */
+
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -70,5 +85,7 @@ class Cart
     {
         return $this->status;
     }
+
+
 }
 
