@@ -29,7 +29,7 @@ class Product
     private $model;
 
     /**
-     * @var string
+     * @var decimal
      *
      * @ORM\Column(name="price", type="decimal", precision=5, scale=2)
      */
@@ -114,7 +114,7 @@ class Product
     /**
      * Get price
      *
-     * @return string
+     * @return decimal
      */
     public function getPrice()
     {
@@ -208,5 +208,7 @@ class Product
     {
         $this->category = $category;
     }
+
+
 }
 

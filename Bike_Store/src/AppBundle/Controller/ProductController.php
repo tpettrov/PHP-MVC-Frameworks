@@ -29,7 +29,7 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findAll();
+        $products = $em->getRepository('AppBundle:Product')->findAvailableProducts();
 
         return $this->render('product/index.html.twig', array(
             'products' => $products,
@@ -170,6 +170,8 @@ class ProductController extends Controller
 
     public function addToCartAction(Request $request, Product $product){
 
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $form = $this->createAddToCartForm($product);
         $form->handleRequest($request);
 
@@ -177,12 +179,26 @@ class ProductController extends Controller
 
             /** @var User $user */
             $user = $this->getUser();
+
+            // warning message if User is poor :)
+
+            if ($user->getCash() < $product->getPrice()) {
+
+                $this->addFlash('warning', "Insufficient funds !");
+                return $this->redirectToRoute('product_index');
+
+            }
+
             /** @var Cart $userCart */
             $userCart = $user->getCart();
+
+            // adding the product and increasing price of Cart, setting status to True
             $userCart->addProduct($product);
+            $product->setQuantity($product->getQuantity() - 1);
             $userCart->setStatus(true);
 
             $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
             $em->persist($userCart);
             $em->flush();
 

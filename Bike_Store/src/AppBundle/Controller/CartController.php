@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cart;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -50,14 +51,20 @@ class CartController extends Controller
      * @Route("/{id}/order", name="order_cart")
      * @param Cart $cart
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      */
 
     public function orderCartAction(Cart $cart){
 
         $cart->setStatus(false);
+        $user = $this->getUser();
+        /** @var User $user */
+        $user->setCash($user->getCash() - $cart->getCost());
+
         $cart->Empty();
 
         $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
         $em->persist($cart);
         $em->flush();
 

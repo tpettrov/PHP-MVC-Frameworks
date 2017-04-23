@@ -47,6 +47,13 @@ class Cart
 
     private $products;
 
+    /**
+     * @ORM\Column(name="cost", type="decimal", precision=5, scale=2)
+     */
+
+    private $cost;
+
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -99,6 +106,7 @@ class Cart
     {
 
         $this->products[] = $product;
+        $this->cost += $product->getPrice();
 
         return $this;
 
@@ -125,12 +133,29 @@ class Cart
 
     }
 
+
+    /**
+     * @return Cart
+     *
+     * Empty the cart after ordering
+     * Probably will be good to move products in Order entity and stuff but not enough time
+     *
+     */
     public function Empty()
     {
 
         $this->products = new ArrayCollection();
+        $this->cost = 0.00;
         return $this;
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCost()
+    {
+        return $this->cost;
     }
 
 

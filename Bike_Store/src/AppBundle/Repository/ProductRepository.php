@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    //get only available products
+
+    public function findAvailableProducts()
+    {
+        return $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0')
+            ->getResult();
+    }
+
+
 }
