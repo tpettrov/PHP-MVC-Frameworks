@@ -155,7 +155,8 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-        $products = $em->getRepository('AppBundle:Product')->findBy(['category' => $category_id ]);
+        $products = $em->getRepository('AppBundle:Product')
+            ->findAvailableProducts($category_id);
 
         return $this->render('product/index.html.twig', array(
             'products' => $products,

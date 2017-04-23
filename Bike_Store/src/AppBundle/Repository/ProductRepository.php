@@ -11,12 +11,23 @@ namespace AppBundle\Repository;
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    //get only available products
+    //get only available products with category
 
-    public function findAvailableProducts()
+    public function findAvailableProducts($category_id = null)
+
     {
-        return $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0')
-            ->getResult();
+
+        if ($category_id == null) {
+
+            $qb = $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0');
+
+            return $qb->getResult();
+        } else
+
+        $qb = $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0 AND u.category = :category')
+            ->setParameter('category',  $category_id );
+
+        return $qb->getResult();
     }
 
 
