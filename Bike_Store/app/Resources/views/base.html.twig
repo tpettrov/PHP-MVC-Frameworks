@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
         </ul>
-        {#{% block header %}#}
+        {% block navigation %}
             <ul class="nav navbar-nav navbar-right">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li><p class="navbar-text">Welcome, {{ app.user.username }}</p></li>
@@ -33,7 +33,7 @@
 
             {% endif %}
 
-        {#{% endblock %}#}
+        {% endblock %}
 
 
             </div>
@@ -53,7 +53,7 @@
 
 </div>
 
-            {{ render(controller('AppBundle:Home:renderCategories')) }}
+{% block categoriesBar %}  {{ render(controller('AppBundle:Home:renderCategories')) }} {% endblock %}
 
 <div class="container">
 

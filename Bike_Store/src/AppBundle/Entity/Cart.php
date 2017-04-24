@@ -48,7 +48,7 @@ class Cart
     private $products;
 
     /**
-     * @ORM\Column(name="cost", type="decimal", precision=5, scale=2)
+     * @ORM\Column(name="cost", type="decimal", precision=5, scale=2, nullable=true)
      */
 
     private $cost;

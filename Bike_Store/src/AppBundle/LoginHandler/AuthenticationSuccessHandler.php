@@ -25,7 +25,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
         if ($user->getCart() == null) {
 
             $cart = new Cart();
-            $cart->setStatus(true);
+            $cart->setStatus(false);
             $user->setCart($cart);
 
             $em=$this->container->get('doctrine.orm.entity_manager');
