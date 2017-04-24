@@ -5,8 +5,12 @@
 {% endblock %}
 
 {% block navigation %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{{ path('logout') }}">Logout</a></li>
+    <li><a href="{{ path('product_index') }}">Products</a></li>
+    <li><a href="{{ path('category_index') }}">Categories</a></li>
+</ul>
 
-    
 {% endblock %}
 
 {% block categoriesBar %}
