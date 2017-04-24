@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Cart;
-use AppBundle\Entity\Money;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
@@ -12,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class UserController extends Controller
+class SecurityController extends Controller
 {
 
      const INITIAL_CASH = 50.00;

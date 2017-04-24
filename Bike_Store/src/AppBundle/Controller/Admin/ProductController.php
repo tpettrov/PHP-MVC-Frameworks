@@ -70,12 +70,10 @@ class ProductController extends Controller
     public function showAction(Product $product)
     {
         $deleteForm = $this->createDeleteForm($product);
-        $addToCartFrom = $this->createAddToCartForm($product);
 
-        return $this->render('product/show.html.twig', array(
+        return $this->render(':admin/product:show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
-//            'addtocart_form' => $addToCartFrom->createView(),
         ));
     }
 
@@ -93,6 +91,8 @@ class ProductController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Product edited successfully!');
 
             return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
         }
@@ -119,6 +119,7 @@ class ProductController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($product);
             $em->flush();
+            $this->addFlash('success', 'Product deleted successfully!');
         }
 
         return $this->redirectToRoute('product_index');
@@ -163,62 +164,6 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * @Route("/{id}", name="add_to_cart")
-     * @Method("PATCH")
-     */
-
-    public function addToCartAction(Request $request, Product $product){
-
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        $form = $this->createAddToCartForm($product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            /** @var User $user */
-            $user = $this->getUser();
-
-            // warning message if User is poor :)
-
-            if ($user->getCash() < $product->getPrice()) {
-
-                $this->addFlash('warning', "Insufficient funds !");
-                return $this->redirectToRoute('product_index');
-
-            }
-
-            /** @var Cart $userCart */
-            $userCart = $user->getCart();
-
-            // adding the product and increasing price of Cart, setting status to True
-            $userCart->addProduct($product);
-            $product->setQuantity($product->getQuantity() - 1);
-            $userCart->setStatus(true);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->persist($userCart);
-            $em->flush();
-
-
-
-        }
-
-        return $this->redirectToRoute('product_index');
-
-    }
-
-
-    private function createAddToCartForm(Product $product)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('add_to_cart', array('id' => $product->getId())))
-            ->setMethod('PATCH')
-            ->getForm()
-            ;
-    }
 
 
 }
