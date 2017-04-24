@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block navigation %}
-<ul class="nav navbar-nav navbar-right">
-    <li><a href="{{ path('logout') }}">Logout</a></li>
-    <li><a href="{{ path('product_index') }}">Products</a></li>
+<ul class="nav navbar-nav navbar-right" xmlns="http://www.w3.org/1999/html">
+    <li><p class="navbar-text">Welcome, admin {{ app.user.username }} | </p></li>
+    <li><a href="{{ path('product_index_admin') }}">Products</a></li>
     <li><a href="{{ path('category_index') }}">Categories</a></li>
+
+    <li><a href="{{ path('logout') }}">Logout</a></li>
 </ul>
 
 {% endblock %}

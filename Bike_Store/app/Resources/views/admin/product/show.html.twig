@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_index.html.twig' %}
 
 {% block content %}
     <h1>Product</h1>
@@ -34,13 +34,20 @@
 
     <ul>
         <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
+            <a href="{{ path('product_index_admin') }}">Back to the list</a>
         </li>
         <li>
             {{  form_start(addtocart_form) }}
             <input type="submit" value="Add To Cart">
             {{ form_end(addtocart_form) }}
         </li>
-
+        <li>
+            <a class="btn btn-primary" href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
     </ul>
 {% endblock %}

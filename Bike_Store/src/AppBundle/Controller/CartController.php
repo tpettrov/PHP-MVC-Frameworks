@@ -56,7 +56,7 @@ class CartController extends Controller
 
     public function orderCartAction(Cart $cart)
     {
-        
+
         $cart->setStatus(false);
         $user = $this->getUser();
         /** @var User $user */
