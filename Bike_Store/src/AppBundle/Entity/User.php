@@ -331,6 +331,11 @@ class User implements UserInterface
     }
 
 
+    public function getRolesCollection()
+    {
+        return $this->roles;
+    }
+
 
 }
 
