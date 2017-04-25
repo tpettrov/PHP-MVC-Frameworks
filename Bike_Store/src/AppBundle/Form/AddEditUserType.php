@@ -29,8 +29,7 @@ class AddEditUserType extends AbstractType
                 'first_options'  => array('label' => 'New Password'),
                 'second_options' => array('label' => 'Repeat New Password'),
             ))
-            ->add('cash', MoneyType::class, array('label' => 'Cash'))
-            ->add('roles');
+            ->add('cash', MoneyType::class, array('label' => 'Cash'));
 
 
     }
