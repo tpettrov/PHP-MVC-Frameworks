@@ -62,7 +62,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @Assert\NotBlank()
+     *
      * @Assert\Length(max=4096)
      * @Assert\Length(min=6)
      */

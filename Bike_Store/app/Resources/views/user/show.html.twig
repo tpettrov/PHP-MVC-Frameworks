@@ -3,27 +3,23 @@
 {% block content %}
     <h1>User</h1>
 
-    <table>
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>Fname</th>
+                <th>First name</th>
                 <td>{{ user.fName }}</td>
             </tr>
             <tr>
-                <th>Lname</th>
+                <th>Last name</th>
                 <td>{{ user.lName }}</td>
             </tr>
             <tr>
                 <th>Email</th>
                 <td>{{ user.eMail }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
             </tr>
             <tr>
                 <th>Cash</th>
@@ -41,7 +37,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
