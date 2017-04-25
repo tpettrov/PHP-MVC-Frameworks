@@ -65,8 +65,15 @@ class Role
 
     public function getRole(){
 
-        return $this->getName();
+        return $this->name;
 
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
 }
 

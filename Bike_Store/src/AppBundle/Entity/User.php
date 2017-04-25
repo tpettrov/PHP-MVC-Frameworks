@@ -329,5 +329,8 @@ class User implements UserInterface
     {
         $this->cart = $cart;
     }
+
+
+
 }
 

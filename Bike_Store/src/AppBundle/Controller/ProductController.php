@@ -36,31 +36,6 @@ class ProductController extends Controller
         ));
     }
 
-    /**
-     * Creates a new product entity.
-     *
-     * @Route("/create", name="product_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $product = new Product();
-        $form = $this->createForm('AppBundle\Form\ProductType', $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->flush();
-
-            return $this->redirectToRoute('product_show', array('id' => $product->getId()));
-        }
-
-        return $this->render('product/new.html.twig', array(
-            'product' => $product,
-            'form' => $form->createView(),
-        ));
-    }
 
     /**
      * Finds and displays a product entity.
