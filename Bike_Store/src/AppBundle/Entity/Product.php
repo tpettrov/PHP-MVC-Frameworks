@@ -64,6 +64,14 @@ class Product
     private $category;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="ownedProducts")
+     * @ORM\JoinColumn(name="owner", referencedColumnName="id")
+     *
+     */
+
+    private $owner;
+
+    /**
      * Get id
      *
      * @return int
@@ -207,6 +215,22 @@ class Product
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
     }
 
 
