@@ -85,8 +85,22 @@ class User implements UserInterface
 
     private $cart;
 
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="owner")
+     *
+     */
+
+    private $ownedProducts;
+
+
+
+
     public function __construct() {
+
         $this->roles = new ArrayCollection();
+        $this->ownedProducts = new ArrayCollection();
     }
 
     /**
