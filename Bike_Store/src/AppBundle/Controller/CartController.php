@@ -57,7 +57,7 @@ class CartController extends Controller
 
     public function orderCartAction(Cart $cart)
     {
-        
+
         $user = $this->getUser();
         /** @var User $user */
         $user->setCash($user->getCash() - $cart->getCost());

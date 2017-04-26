@@ -350,6 +350,30 @@ class User implements UserInterface
         return $this->roles;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getOwnedProductsCount()
+    {
+        return count($this->ownedProducts);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwnedProducts()
+    {
+        return $this->ownedProducts;
+    }
+
+    /**
+     * @param mixed $ownedProducts
+     */
+    public function setOwnedProducts($ownedProducts)
+    {
+        $this->ownedProducts = $ownedProducts;
+    }
+
 
 }
 

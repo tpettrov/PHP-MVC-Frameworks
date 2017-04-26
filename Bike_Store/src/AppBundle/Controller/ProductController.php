@@ -50,9 +50,31 @@ class ProductController extends Controller
 
         return $this->render('product/show.html.twig', array(
             'product' => $product,
-//            'delete_form' => $deleteForm->createView(),
             'addtocart_form' => $addToCartFrom->createView(),
         ));
+    }
+
+
+    /**
+     * @Route("/user_products/{user_id}", name="user_bought_products")
+     *
+     */
+
+    public function showUserProducts(int $user_id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->findOneBy(['id' => $user_id]);
+
+        $products = $user->getOwnedProducts();
+
+
+
+        return $this->render('product/show_in_myproducts.html.twig', array(
+            'products' => $products
+        ));
+
+
     }
 
 
@@ -126,6 +148,10 @@ class ProductController extends Controller
 
     }
 
+    /**
+     * @param Product $product
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     */
 
     private function createAddToCartForm(Product $product)
     {
@@ -135,6 +161,8 @@ class ProductController extends Controller
             ->getForm()
             ;
     }
+
+
 
 
 }
