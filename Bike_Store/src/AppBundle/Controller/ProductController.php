@@ -55,28 +55,6 @@ class ProductController extends Controller
     }
 
 
-    /**
-     * @Route("/user_products/{user_id}", name="user_bought_products")
-     *
-     */
-
-    public function showUserProducts(int $user_id){
-
-        $em = $this->getDoctrine()->getManager();
-
-        $user = $em->getRepository('AppBundle:User')->findOneBy(['id' => $user_id]);
-
-        $products = $user->getOwnedProducts();
-
-
-
-        return $this->render('product/show_in_myproducts.html.twig', array(
-            'products' => $products
-        ));
-
-
-    }
-
 
     /**
      * Lists all product entities by category.

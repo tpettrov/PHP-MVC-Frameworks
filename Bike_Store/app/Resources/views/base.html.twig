@@ -21,8 +21,8 @@
             <ul class="nav navbar-nav navbar-right">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li><p class="navbar-text">Welcome, {{ app.user.username }}</p></li>
-                <li><a href="{{ path('user_bought_products', {"user_id" : app.user.id })}}">My Products {{ app.user.getownedproductscount }}</a></li>
-                <li><a href="{{ path('cart_show', {"id" : app.user.cart.id })}}">Cart:{{ app.user.cart.getproductcount }} </a></li>
+                <li><a href="{{ path('user_bought_products')}}">My Products {{ app.user.getownedproductscount }}</a></li>
+                <li><a href="{{ path('cart_show')}}">Cart:{{ app.user.cart.getproductcount }} </a></li>
                 <li><p class="navbar-text">Money: {{app.user.cash}} BGN </p></li>
             <li><a href="{{ path('logout') }}">Logout</a></li>
             {% else %}

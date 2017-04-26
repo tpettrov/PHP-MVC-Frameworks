@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -37,5 +38,41 @@ class HomeController extends Controller
         ));
 
 
+    }
+
+    /**
+     * @Route("/user_products", name="user_bought_products")
+     *
+     */
+
+    public function showUserProducts(){
+
+        $user = $this->getUser();
+
+        $products = $user->getOwnedProducts();
+
+        return $this->render('product/show_in_myproducts.html.twig', array(
+            'products' => $products
+        ));
+
+
+    }
+
+    /**
+     *
+     *
+     * @Route("/usercart", name="cart_show")
+     *
+     */
+    public function showUsersCartAction()
+    {
+        $user = $this->getUser();
+        /** @var User $user */
+        $cart = $user->getCart();
+
+        return $this->render('cart/show.html.twig', array(
+            'cart' => $cart,
+            'products' => $cart->getProducts()
+        ));
     }
 }
