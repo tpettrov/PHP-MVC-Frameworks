@@ -71,6 +71,7 @@ class CartController extends Controller
             /** @var Product $newProduct */
             $newProduct->setOwner($user);
             $newProduct->setQuantity('1');
+            $newProduct->setForsale('false');
 
             $em->persist($newProduct);
             $em->flush();

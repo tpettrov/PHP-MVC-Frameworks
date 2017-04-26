@@ -72,6 +72,14 @@ class Product
     private $owner;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="forsale", type="boolean")
+     */
+
+    private $forsale;
+
+    /**
      * Get id
      *
      * @return int
@@ -231,6 +239,22 @@ class Product
     public function setOwner($user_id)
     {
         $this->owner = $user_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getForsale()
+    {
+        return $this->forsale;
+    }
+
+    /**
+     * @param mixed $forsale
+     */
+    public function setForsale($forsale)
+    {
+        $this->forsale = $forsale;
     }
 
 

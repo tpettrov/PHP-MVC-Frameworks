@@ -1,21 +1,21 @@
-{%  extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 
 
-{%  block content %}
+{% block content %}
 
     <h1>My Products</h1>
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
         </thead>
 
         <tbody>
@@ -29,12 +29,16 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
-                        </li>
+                    {% if product.forsale == false %}
 
-                    </ul>
+                        <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Sale</a>
+
+                    {% else %}
+
+                        <p>Item is currently on sale</p>
+
+                        {% endif %}
+
                 </td>
             </tr>
         {% endfor %}
@@ -45,4 +49,4 @@
 
 
 
-{%  endblock %}
+{% endblock %}

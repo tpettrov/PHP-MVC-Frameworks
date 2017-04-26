@@ -140,6 +140,12 @@ class ProductController extends Controller
             ;
     }
 
+    /**
+     * @Route("/changeStatus")
+     *
+     * Тва трябва да стане с форма.
+     */
+
 
 
 
