@@ -228,9 +228,9 @@ class Product
     /**
      * @param mixed $owner
      */
-    public function setOwner($owner)
+    public function setOwner($user_id)
     {
-        $this->owner = $owner;
+        $this->owner = $user_id;
     }
 
 

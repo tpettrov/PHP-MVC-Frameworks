@@ -88,7 +88,7 @@ class User implements UserInterface
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="owner")
      *
      */
 

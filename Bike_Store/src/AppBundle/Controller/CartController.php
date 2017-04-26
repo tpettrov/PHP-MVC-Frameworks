@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cart;
+use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -56,15 +57,28 @@ class CartController extends Controller
 
     public function orderCartAction(Cart $cart)
     {
-
-        $cart->setStatus(false);
+        
         $user = $this->getUser();
         /** @var User $user */
         $user->setCash($user->getCash() - $cart->getCost());
 
+        $buyedProducts = $cart->getProducts();
+        $em = $this->getDoctrine()->getManager();
+
+        foreach($buyedProducts as $product) {
+
+            $newProduct = clone $product;
+            /** @var Product $newProduct */
+            $newProduct->setOwner($user);
+            $newProduct->setQuantity('1');
+
+            $em->persist($newProduct);
+            $em->flush();
+        }
+
         $cart->Empty();
 
-        $em = $this->getDoctrine()->getManager();
+        $cart->setStatus(false);
         $em->persist($user);
         $em->persist($cart);
         $em->flush();

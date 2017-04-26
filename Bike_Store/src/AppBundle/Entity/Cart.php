@@ -99,7 +99,7 @@ class Cart
      * add product to the Cart
      *
      * @param Product $product
-     * @return $this
+     *
      */
 
     public function addProduct(Product $product)
@@ -108,7 +108,6 @@ class Cart
         $this->products[] = $product;
         $this->cost += $product->getPrice();
 
-        return $this;
 
     }
 
@@ -124,11 +123,31 @@ class Cart
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection []
      */
-    public function getProducts()
+    public function getProductsArray()
     {
 
+        $products = [];
+
+        foreach ($this->products as $product) {
+
+            /** @var $role Role */
+
+            $products[] = $product;
+
+        }
+
+        return $products;
+
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+
+    public function getProducts()
+    {
         return $this->products;
 
     }
