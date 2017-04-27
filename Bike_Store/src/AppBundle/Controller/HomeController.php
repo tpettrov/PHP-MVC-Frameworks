@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,7 +48,9 @@ class HomeController extends Controller
 
     public function showUserProducts(){
 
+
         $user = $this->getUser();
+
 
         $products = $user->getOwnedProducts();
 
@@ -58,9 +61,9 @@ class HomeController extends Controller
 
     }
 
+
+
     /**
-     *
-     *
      * @Route("/usercart", name="cart_show")
      *
      */

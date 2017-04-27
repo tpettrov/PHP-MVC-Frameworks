@@ -46,12 +46,22 @@ class ProductController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository(Product::class)->findOneBy(['id' => $id]);
-        $product->setForsale(true);
 
-        $em->persist($product);
-        $em->flush();
+        if ($product->getForsale()) {
 
-        $this->addFlash('success', 'Item is now listed for sale!');
+            $product->setForsale(false);
+            $em->persist($product);
+            $em->flush();
+            $this->addFlash('success', 'Item returned for hold.');
+
+        } else {
+            $product->setForsale(true);
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Item is now listed for sale!');
+
+        }
 
         return $this->redirectToRoute('product_index');
 

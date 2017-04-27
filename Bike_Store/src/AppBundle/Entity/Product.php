@@ -242,7 +242,7 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getForsale()
     {

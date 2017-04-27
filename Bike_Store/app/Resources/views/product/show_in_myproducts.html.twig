@@ -33,10 +33,11 @@
 
                         <a class="btn btn-primary" href="{{ path('switch_sale', { 'id': product.id }) }}">Sale</a>
 
+
                     {% else %}
 
-                        <p>Item is currently on sale</p>
 
+                        <a class="btn btn-danger" href="{{ path('switch_sale', { 'id': product.id }) }}">Stop Sale</a>
                         {% endif %}
 
                 </td>
