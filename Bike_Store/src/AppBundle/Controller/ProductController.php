@@ -128,6 +128,12 @@ class ProductController extends Controller
             /** @var User $user */
             $user = $this->getUser();
 
+            if($product->getOwner() == $user) {
+
+                $this->addFlash('warning', "You already own this product!");
+                return $this->redirectToRoute('user_bought_products');
+            }
+
             // warning message if User is poor :)
 
             if ($user->getCash() < $product->getPrice()) {
