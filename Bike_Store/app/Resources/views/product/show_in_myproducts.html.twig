@@ -31,7 +31,7 @@
                 <td>
                     {% if product.forsale == false %}
 
-                        <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Sale</a>
+                        <a class="btn btn-primary" href="{{ path('switch_sale', { 'id': product.id }) }}">Sale</a>
 
                     {% else %}
 

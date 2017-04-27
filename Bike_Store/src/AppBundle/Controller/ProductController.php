@@ -38,6 +38,28 @@ class ProductController extends Controller
 
 
     /**
+     * @Route("/user_products/{id}", name="switch_sale")
+     *
+     */
+
+    public function changeForSale(int $id){
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Product::class)->findOneBy(['id' => $id]);
+        $product->setForsale(true);
+
+        $em->persist($product);
+        $em->flush();
+
+        $this->addFlash('success', 'Item is now listed for sale!');
+
+        return $this->redirectToRoute('product_index');
+
+
+    }
+
+
+    /**
      * Finds and displays a product entity.
      *
      * @Route("/{id}", name="product_show")
@@ -140,11 +162,7 @@ class ProductController extends Controller
             ;
     }
 
-    /**
-     * @Route("/changeStatus")
-     *
-     * Тва трябва да стане с форма.
-     */
+
 
 
 
