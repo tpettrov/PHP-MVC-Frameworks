@@ -35,7 +35,7 @@ class HomeController extends Controller
 
 
         return $this->render('default/categoryBar.html.twig', array(
-           'categories' => $categories
+            'categories' => $categories
         ));
 
 
@@ -46,7 +46,8 @@ class HomeController extends Controller
      *
      */
 
-    public function showUserProducts(){
+    public function showUserProducts()
+    {
 
 
         $user = $this->getUser();
@@ -60,7 +61,6 @@ class HomeController extends Controller
 
 
     }
-
 
 
     /**
