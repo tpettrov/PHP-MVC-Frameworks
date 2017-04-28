@@ -1,0 +1,40 @@
+{% extends 'admin/admin_index.html.twig' %}
+
+{% block content %}
+    <h1>Promotion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ promotion.id }}</td>
+            </tr>
+            <tr>
+                <th>Percent</th>
+                <td>{{ promotion.percent }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{% if promotion.start %}{{ promotion.start|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{% if promotion.end %}{{ promotion.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('promotion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
