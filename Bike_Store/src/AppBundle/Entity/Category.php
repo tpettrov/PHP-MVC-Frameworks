@@ -37,7 +37,8 @@ class Category
 
     private $products;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->products = new ArrayCollection();
     }
 
@@ -53,6 +54,16 @@ class Category
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -64,16 +75,6 @@ class Category
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

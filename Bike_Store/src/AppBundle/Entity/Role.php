@@ -40,6 +40,16 @@ class Role
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -53,17 +63,8 @@ class Role
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getRole()
     {
-        return $this->name;
-    }
-
-    public function getRole(){
 
         return $this->name;
 

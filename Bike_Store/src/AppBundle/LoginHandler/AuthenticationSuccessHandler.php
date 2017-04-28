@@ -14,12 +14,12 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
     public function __construct(HttpUtils $httpUtils, \Symfony\Component\DependencyInjection\ContainerInterface $cont, array $options)
     {
         parent::__construct($httpUtils, $options);
-        $this->container=$cont;
+        $this->container = $cont;
     }
 
     public function onAuthenticationSuccess(\Symfony\Component\HttpFoundation\Request $request, \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token)
     {
-        $user=$token->getUser();
+        $user = $token->getUser();
 
         /** @var User $user */
         if ($user->getCart() == null) {
@@ -28,7 +28,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             $cart->setStatus(false);
             $user->setCart($cart);
 
-            $em=$this->container->get('doctrine.orm.entity_manager');
+            $em = $this->container->get('doctrine.orm.entity_manager');
 
             $em->persist($cart);
 

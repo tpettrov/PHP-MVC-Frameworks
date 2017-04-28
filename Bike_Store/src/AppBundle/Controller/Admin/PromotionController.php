@@ -3,9 +3,10 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Promotion;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Promotion controller.
@@ -74,6 +75,21 @@ class PromotionController extends Controller
     }
 
     /**
+     * Creates a form to delete a promotion entity.
+     *
+     * @param Promotion $promotion The promotion entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Promotion $promotion)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('promotion_delete', array('id' => $promotion->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing promotion entity.
      *
      * @Route("/{id}/edit", name="promotion_edit")
@@ -116,21 +132,5 @@ class PromotionController extends Controller
         }
 
         return $this->redirectToRoute('promotion_index');
-    }
-
-    /**
-     * Creates a form to delete a promotion entity.
-     *
-     * @param Promotion $promotion The promotion entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Promotion $promotion)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('promotion_delete', array('id' => $promotion->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

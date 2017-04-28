@@ -90,6 +90,16 @@ class Product
     }
 
     /**
+     * Get model
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
      * Set model
      *
      * @param string $model
@@ -104,13 +114,13 @@ class Product
     }
 
     /**
-     * Get model
+     * Get price
      *
-     * @return string
+     * @return decimal
      */
-    public function getModel()
+    public function getPrice()
     {
-        return $this->model;
+        return $this->price;
     }
 
     /**
@@ -128,13 +138,13 @@ class Product
     }
 
     /**
-     * Get price
+     * Get image
      *
-     * @return decimal
+     * @return string
      */
-    public function getPrice()
+    public function getImage()
     {
-        return $this->price;
+        return $this->image;
     }
 
     /**
@@ -152,13 +162,13 @@ class Product
     }
 
     /**
-     * Get image
+     * Get description
      *
      * @return string
      */
-    public function getImage()
+    public function getDescription()
     {
-        return $this->image;
+        return $this->description;
     }
 
     /**
@@ -176,13 +186,13 @@ class Product
     }
 
     /**
-     * Get description
+     * Get quantity
      *
-     * @return string
+     * @return int
      */
-    public function getDescription()
+    public function getQuantity()
     {
-        return $this->description;
+        return $this->quantity;
     }
 
     /**
@@ -197,16 +207,6 @@ class Product
         $this->quantity = $quantity;
 
         return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return int
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
     }
 
     /**

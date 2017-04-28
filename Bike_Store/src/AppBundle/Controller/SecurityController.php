@@ -5,15 +5,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
 class SecurityController extends Controller
 {
 
-     const INITIAL_CASH = 50.00;
+    const INITIAL_CASH = 50.00;
 
     /**
      * @Route("/register", name="register_user")

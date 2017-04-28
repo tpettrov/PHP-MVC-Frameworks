@@ -18,15 +18,14 @@ class UserType extends AbstractType
     {
         $builder
             ->add('fName', TextType::class, array('label' => 'First Name'))
-            ->add('lName', TextType::class , array('label' => 'Last Name'))
+            ->add('lName', TextType::class, array('label' => 'Last Name'))
             ->add('email', EmailType::class, array('label' => 'E-mail'))
             ->add('rawPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
+                'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
             ))
-            ->add('Register', SubmitType::class, array('attr' => ['class' =>'btn btn-primary' ]))
-        ;
+            ->add('Register', SubmitType::class, array('attr' => ['class' => 'btn btn-primary']));
 
     }
 

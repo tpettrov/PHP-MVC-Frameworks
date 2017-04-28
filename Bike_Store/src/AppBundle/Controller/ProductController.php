@@ -3,12 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cart;
-use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Product controller.
@@ -42,7 +42,8 @@ class ProductController extends Controller
      *
      */
 
-    public function changeForSale(int $id){
+    public function changeForSale(int $id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository(Product::class)->findOneBy(['id' => $id]);
@@ -86,7 +87,18 @@ class ProductController extends Controller
         ));
     }
 
+    /**
+     * @param Product $product
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
+     */
 
+    private function createAddToCartForm(Product $product)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('add_to_cart', array('id' => $product->getId())))
+            ->setMethod('PATCH')
+            ->getForm();
+    }
 
     /**
      * Lists all product entities by category.
@@ -96,7 +108,8 @@ class ProductController extends Controller
      *
      */
 
-    public function  showByCategoryAction (int $category_id){
+    public function showByCategoryAction(int $category_id)
+    {
 
 
         $em = $this->getDoctrine()->getManager();
@@ -116,7 +129,8 @@ class ProductController extends Controller
      * @Method("PATCH")
      */
 
-    public function addToCartAction(Request $request, Product $product){
+    public function addToCartAction(Request $request, Product $product)
+    {
 
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -128,7 +142,7 @@ class ProductController extends Controller
             /** @var User $user */
             $user = $this->getUser();
 
-            if($product->getOwner() == $user) {
+            if ($product->getOwner() == $user) {
 
                 $this->addFlash('warning', "You already own this product!");
                 return $this->redirectToRoute('user_bought_products');
@@ -157,30 +171,11 @@ class ProductController extends Controller
             $em->flush();
 
 
-
         }
 
         return $this->redirectToRoute('product_index');
 
     }
-
-    /**
-     * @param Product $product
-     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
-     */
-
-    private function createAddToCartForm(Product $product)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('add_to_cart', array('id' => $product->getId())))
-            ->setMethod('PATCH')
-            ->getForm()
-            ;
-    }
-
-
-
-
 
 
 }

@@ -24,8 +24,8 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
             return $qb->getResult();
         } else
 
-        $qb = $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0 AND u.category = :category AND u.forsale = 1')
-            ->setParameter('category',  $category_id );
+            $qb = $this->_em->createQuery('SELECT u FROM AppBundle\Entity\Product u WHERE u.quantity > 0 AND u.category = :category AND u.forsale = 1')
+                ->setParameter('category', $category_id);
 
         return $qb->getResult();
     }

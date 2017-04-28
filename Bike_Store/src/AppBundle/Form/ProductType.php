@@ -15,7 +15,7 @@ class ProductType extends AbstractType
     {
         $builder->add('model')->add('price')->add('image')->add('description')->add('quantity')->add('category');
     }
-    
+
     /**
      * {@inheritdoc}
      */

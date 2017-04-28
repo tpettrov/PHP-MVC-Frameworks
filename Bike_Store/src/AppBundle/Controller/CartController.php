@@ -5,9 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Cart;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Cart controller.
@@ -65,7 +65,7 @@ class CartController extends Controller
         $buyedProducts = $cart->getProducts();
         $em = $this->getDoctrine()->getManager();
 
-        foreach($buyedProducts as $product) {
+        foreach ($buyedProducts as $product) {
 
             $newProduct = clone $product;
             /** @var Product $newProduct */

@@ -2,13 +2,11 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Entity\Cart;
-use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
-use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Product controller.
@@ -78,6 +76,21 @@ class ProductController extends Controller
     }
 
     /**
+     * Creates a form to delete a product entity.
+     *
+     * @param Product $product The product entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Product $product)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('product_delete', array('id' => $product->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing product entity.
      *
      * @Route("/{id}/edit", name="product_edit")
@@ -126,22 +139,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a form to delete a product entity.
-     *
-     * @param Product $product The product entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Product $product)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('product_delete', array('id' => $product->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-
-    /**
      * Lists all product entities by category.
      *
      * @Route("/{category_name}/{category_id}", name="product_by_category")
@@ -149,7 +146,8 @@ class ProductController extends Controller
      *
      */
 
-    public function  showByCategoryAction (int $category_id){
+    public function showByCategoryAction(int $category_id)
+    {
 
 
         $em = $this->getDoctrine()->getManager();
@@ -163,7 +161,6 @@ class ProductController extends Controller
         ));
 
     }
-
 
 
 }

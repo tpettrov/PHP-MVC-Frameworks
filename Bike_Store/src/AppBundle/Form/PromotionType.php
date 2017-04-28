@@ -15,7 +15,7 @@ class PromotionType extends AbstractType
     {
         $builder->add('percent')->add('start')->add('end');
     }
-    
+
     /**
      * {@inheritdoc}
      */

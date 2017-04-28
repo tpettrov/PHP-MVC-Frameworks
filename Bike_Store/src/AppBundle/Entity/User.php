@@ -4,9 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
@@ -93,16 +93,6 @@ class User implements UserInterface
      */
 
     private $ownedProducts;
-
-
-
-
-    public function __construct() {
-
-        $this->roles = new ArrayCollection();
-        $this->ownedProducts = new ArrayCollection();
-    }
-
     /**
      *
      * @ORM\Column(name="cash", type="decimal", precision=5, scale=2)
@@ -110,6 +100,12 @@ class User implements UserInterface
 
     private $cash;
 
+    public function __construct()
+    {
+
+        $this->roles = new ArrayCollection();
+        $this->ownedProducts = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -119,6 +115,16 @@ class User implements UserInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get fName
+     *
+     * @return string
+     */
+    public function getFName()
+    {
+        return $this->fName;
     }
 
     /**
@@ -136,13 +142,13 @@ class User implements UserInterface
     }
 
     /**
-     * Get fName
+     * Get lName
      *
      * @return string
      */
-    public function getFName()
+    public function getLName()
     {
-        return $this->fName;
+        return $this->lName;
     }
 
     /**
@@ -160,13 +166,13 @@ class User implements UserInterface
     }
 
     /**
-     * Get lName
+     * Get eMail
      *
      * @return string
      */
-    public function getLName()
+    public function getEMail()
     {
-        return $this->lName;
+        return $this->eMail;
     }
 
     /**
@@ -184,13 +190,13 @@ class User implements UserInterface
     }
 
     /**
-     * Get eMail
+     * Get password
      *
      * @return string
      */
-    public function getEMail()
+    public function getPassword()
     {
-        return $this->eMail;
+        return $this->password;
     }
 
     /**
@@ -205,16 +211,6 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -254,7 +250,8 @@ class User implements UserInterface
      *
      */
 
-    public function addRole(Role $role){
+    public function addRole(Role $role)
+    {
 
 
         $this->roles[] = $role;

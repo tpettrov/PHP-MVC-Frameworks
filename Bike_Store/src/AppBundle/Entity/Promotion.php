@@ -54,6 +54,16 @@ class Promotion
     }
 
     /**
+     * Get percent
+     *
+     * @return int
+     */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
+
+    /**
      * Set percent
      *
      * @param integer $percent
@@ -68,13 +78,13 @@ class Promotion
     }
 
     /**
-     * Get percent
+     * Get start
      *
-     * @return int
+     * @return \DateTime
      */
-    public function getPercent()
+    public function getStart()
     {
-        return $this->percent;
+        return $this->start;
     }
 
     /**
@@ -92,13 +102,13 @@ class Promotion
     }
 
     /**
-     * Get start
+     * Get end
      *
      * @return \DateTime
      */
-    public function getStart()
+    public function getEnd()
     {
-        return $this->start;
+        return $this->end;
     }
 
     /**
@@ -113,16 +123,6 @@ class Promotion
         $this->end = $end;
 
         return $this;
-    }
-
-    /**
-     * Get end
-     *
-     * @return \DateTime
-     */
-    public function getEnd()
-    {
-        return $this->end;
     }
 }
 

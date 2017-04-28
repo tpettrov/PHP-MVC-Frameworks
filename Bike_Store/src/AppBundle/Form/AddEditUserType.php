@@ -2,9 +2,7 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
-
 use AppBundle\Repository\RoleRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -23,28 +21,26 @@ class AddEditUserType extends AbstractType
 
         $builder
             ->add('fName', TextType::class, array('label' => 'First Name'))
-            ->add('lName', TextType::class , array('label' => 'Last Name'))
+            ->add('lName', TextType::class, array('label' => 'Last Name'))
             ->add('email', EmailType::class, array('label' => 'E-mail'))
             ->add('rawPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'New Password'),
+                'first_options' => array('label' => 'New Password'),
                 'second_options' => array('label' => 'Repeat New Password'),
             ))
             ->add('cash', MoneyType::class, array('label' => 'Cash'))
             ->add('roles_collection', EntityType::class, [
-                'class'     => 'AppBundle:Role',
+                'class' => 'AppBundle:Role',
                 'choice_label' => 'name',
                 'query_builder' => function (RoleRepository $repo) {
                     return $repo->createQueryBuilder('f')
                         ->where('f.id > :id')
                         ->setParameter('id', 0);
                 },
-                'label'     => 'Choose a role:',
-                'expanded'  => true,
-                'multiple'  => true,
-            ])
-
-        ;
+                'label' => 'Choose a role:',
+                'expanded' => true,
+                'multiple' => true,
+            ]);
 
 
     }

@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @Route("admin", name="admin")
  */
-
 class AdminController extends Controller
 {
     /**
