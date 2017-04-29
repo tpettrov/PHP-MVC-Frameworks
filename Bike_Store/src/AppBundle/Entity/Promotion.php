@@ -52,6 +52,14 @@ class Promotion
     private $end;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="isGlobal", type="boolean")
+     */
+
+    private $isGlobal = false;
+
+    /**
      * @ORM\ManytoMany(targetEntity="AppBundle\Entity\Product", mappedBy="promotions")
      */
 
@@ -206,6 +214,22 @@ class Promotion
     public function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsGlobal()
+    {
+        return $this->isGlobal;
+    }
+
+    /**
+     * @param mixed bool
+     */
+    public function setIsGlobal($isGlobal)
+    {
+        $this->isGlobal = $isGlobal;
     }
 }
 

@@ -1,18 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Cart</h1>
+    <h1>My Cart</h1>
 
-    <table>
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ cart.id }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{% if cart.status %}Yes{% else %}No{% endif %}</td>
-            </tr>
+
             <tr>
                 <th>Products</th>
                 <td>{{ include(':product:show_in_cart.html.twig') }}</td>
@@ -20,9 +13,7 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the shop</a>
-        </li>
-    </ul>
+
+            <a class="btn btn-primary" href="{{ path('product_index') }}">Back to the shop</a>
+
 {% endblock %}

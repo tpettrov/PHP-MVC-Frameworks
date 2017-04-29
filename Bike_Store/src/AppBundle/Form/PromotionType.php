@@ -16,7 +16,8 @@ class PromotionType extends AbstractType
         $builder->add('percent')
             ->add('start')
             ->add('end')
-            ->add('name');
+            ->add('name')
+            ->add('isGlobal');
     }
 
     /**

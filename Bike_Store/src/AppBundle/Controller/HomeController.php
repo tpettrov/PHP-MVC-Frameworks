@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function indexAction()
     {
+
         return $this->render('default/index.html.twig');
     }
 
@@ -50,12 +51,13 @@ class HomeController extends Controller
 
 
         $user = $this->getUser();
-
+        $calc = $this->get('price_calculator');
 
         $products = $user->getOwnedProducts();
 
         return $this->render('product/show_in_myproducts.html.twig', array(
-            'products' => $products
+            'products' => $products,
+            'calculator' => $calc
         ));
 
 
@@ -71,10 +73,11 @@ class HomeController extends Controller
         $user = $this->getUser();
         /** @var User $user */
         $cart = $user->getCart();
-
+        $calc = $this->get('price_calculator');
         return $this->render('cart/show.html.twig', array(
             'cart' => $cart,
-            'products' => $cart->getProducts()
+            'products' => $cart->getProducts(),
+            'calculator' => $calc
         ));
     }
 }

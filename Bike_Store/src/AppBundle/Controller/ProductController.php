@@ -135,6 +135,7 @@ class ProductController extends Controller
 
     public function addToCartAction(Request $request, Product $product)
     {
+        $calc = $this->get('price_calculator');
 
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -154,7 +155,7 @@ class ProductController extends Controller
 
             // warning message if User is poor :)
 
-            if ($user->getCash() < $product->getPrice()) {
+            if ($user->getCash() < $calc->calculate($product)) {
 
                 $this->addFlash('warning', "Insufficient funds !");
                 return $this->redirectToRoute('product_index');
@@ -166,6 +167,7 @@ class ProductController extends Controller
 
             // adding the product and increasing price of Cart, setting status to True
             $userCart->addProduct($product);
+            $userCart->setCost($calc->calculate($product));
             $product->setQuantity($product->getQuantity() - 1);
             $userCart->setStatus(true);
 

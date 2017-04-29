@@ -2,35 +2,33 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Number</th>
             <th>Model</th>
             <th>Price</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Quantity</th>
             <th>Actions</th>
         </tr>
         </thead>
 
         <tbody>
 
-        {% for product in products %}
+        {% for key,product in products %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key + 1}}</a></td>
                 <td>{{ product.model }}</td>
+                {% if calculator.calculate(product) != product.price %}
+
+                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calculator.calculate(product) }}</p></td>
+
+                {% else %}
+
                 <td>{{ product.price }}</td>
-                <td>{{ product.image }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.quantity }}</td>
+                {% endif %}
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}">Remove from Cart</a>
-                        </li>
-                    </ul>
+
+                            <a href="{{ path('product_show', { 'id': product.id }) }}">More</a>
+
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}">Remove</a>
+
                 </td>
             </tr>
         {% endfor %}
@@ -39,11 +37,8 @@
 
     </table>
 
-    <ul>
-        <li>
             <a class="btn btn-primary" href="{{ path('order_cart', {'id' : cart.id}) }}">Place Order</a>
-        </li>
-    </ul>
+
 {% else %}
 
     Your cart is empty !

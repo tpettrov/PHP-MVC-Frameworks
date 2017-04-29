@@ -6,37 +6,37 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Number</th>
             <th>Model</th>
             <th>Price</th>
-            <th>Image</th>
-            <th>Description</th>
             <th>Quantity</th>
-            <th>Actions</th>
+
         </tr>
         </thead>
         <tbody>
-        {% for product in products %}
+        {% for key,product in products %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key+1 }}</a></td>
                 <td>{{ product.model }}</td>
+
+                {% if calc.calculate(product) != product.price %}
+
+                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calc.calculate(product) }}</p></td>
+
+                {% else %}
 
                     <td>{{ product.price }}</td>
 
-                    <td>
+                {% endif %}
 
-                        <p class="alert-danger">{{ calc.calculate(product) }}</p></td>
 
-                <td>{{ product.image }}</td>
-                <td>{{ product.description }}</td>
+
+
                 <td>{{ product.quantity }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                        </li>
 
-                    </ul>
+                            <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
+
                 </td>
             </tr>
         {% endfor %}

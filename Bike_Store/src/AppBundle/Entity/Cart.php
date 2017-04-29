@@ -106,8 +106,7 @@ class Cart
     {
 
         $this->products[] = $product;
-        $this->cost += $product->getPrice();
-
+        //$this->cost += $product->getPrice();
 
     }
 
@@ -175,6 +174,14 @@ class Cart
     public function getCost()
     {
         return $this->cost;
+    }
+
+    /**
+     * @param mixed $cost
+     */
+    public function setCost($cost)
+    {
+        $this->cost += $cost;
     }
 
 

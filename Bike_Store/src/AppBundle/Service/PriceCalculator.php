@@ -15,13 +15,12 @@ class PriceCalculator
     protected $manager;
     protected $activePromotions;
 
-    protected $activePromotionsProducts;
-
 
     public function __construct(PromotionManager $manager)
     {
         $this->manager = $manager;
         $this->activePromotions = $manager->getActivePromotions();
+
 
     }
 
@@ -56,7 +55,7 @@ class PriceCalculator
         foreach ($this->activePromotions as $promotion) {
 
             if ($promotion->getProducts()->contains($product)
-                || $promotion->getCategories()->contains($category)
+                || $promotion->getCategories()->contains($category) || $promotion->getIsGlobal()
             ) {
 
                 $promotionsToCompare[] = $promotion->getPercent();

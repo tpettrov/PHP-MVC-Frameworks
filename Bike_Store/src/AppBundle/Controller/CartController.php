@@ -42,9 +42,11 @@ class CartController extends Controller
     public function showAction(Cart $cart)
     {
 
+
         return $this->render('cart/show.html.twig', array(
             'cart' => $cart,
-            'products' => $cart->getProducts()
+            'products' => $cart->getProducts(),
+            'calculator' => $calc
         ));
     }
 
@@ -60,6 +62,7 @@ class CartController extends Controller
 
         $user = $this->getUser();
         /** @var User $user */
+
         $user->setCash($user->getCash() - $cart->getCost());
 
         $buyedProducts = $cart->getProducts();
@@ -89,9 +92,6 @@ class CartController extends Controller
 
     }
 
-    /**
-     *
-     */
 
 
 }
