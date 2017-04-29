@@ -2,9 +2,9 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Promotion;
-use AppBundle\Repository\PromotionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
 
@@ -12,11 +12,17 @@ use Doctrine\ORM\PersistentCollection;
 class PriceCalculator
 {
     /** @var  ArrayCollection */
+    protected $manager;
     protected $activePromotions;
 
-    public function __construct(PromotionRepository $repo)
+    protected $activePromotionsProducts;
+
+
+    public function __construct(PromotionManager $manager)
     {
-        $this->activePromotions = $repo->fetchActivePromotions();
+        $this->manager = $manager;
+        $this->activePromotions = $manager->getActivePromotions();
+
     }
 
 
@@ -28,12 +34,11 @@ class PriceCalculator
     public function calculate($product)
     {
 
-        $productPromotions = $product->getPromotions();
+        $bestPromotion = $this->findBestPromotion($product, $product->getCategory());
+        $productPrice = $product->getPrice();
 
-        $bestPromotion = $this->findBestPromotion($productPromotions);
 
-
-        return $product->getPrice() - $product->getPrice() * ($bestPromotion / 100);
+        return $productPrice - $productPrice * ($bestPromotion / 100);
     }
 
 
@@ -41,20 +46,24 @@ class PriceCalculator
      * @param PersistentCollection $productPromotions
      * @return int
      */
-    private function findBestPromotion(PersistentCollection $productPromotions)
+    private function findBestPromotion(Product $product, Category $category)
     {
 
         $promotionsToCompare = [0];
 
-        foreach ($productPromotions as $promotion) {
+        /** @var Promotion $promotion */
 
-            if ($this->activePromotions->contains($promotion)) {
+        foreach ($this->activePromotions as $promotion) {
 
-                /** @var Promotion $promotion */
+            if ($promotion->getProducts()->contains($product)
+                || $promotion->getCategories()->contains($category)
+            ) {
+
                 $promotionsToCompare[] = $promotion->getPercent();
             }
 
         }
+
 
         return max($promotionsToCompare);
 

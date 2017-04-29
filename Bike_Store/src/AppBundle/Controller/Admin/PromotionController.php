@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Promotion controller.
  *
- * @Route("promotion")
+ * @Route("admin/promotion")
  */
 class PromotionController extends Controller
 {

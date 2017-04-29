@@ -13,7 +13,10 @@ class PromotionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('percent')->add('start')->add('end');
+        $builder->add('percent')
+            ->add('start')
+            ->add('end')
+            ->add('name');
     }
 
     /**

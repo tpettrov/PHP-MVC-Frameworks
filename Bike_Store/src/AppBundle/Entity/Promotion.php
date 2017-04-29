@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,6 +21,14 @@ class Promotion
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=false)
+     */
+
+    private $name;
 
     /**
      * @var int
@@ -41,6 +50,27 @@ class Promotion
      * @ORM\Column(name="end", type="date")
      */
     private $end;
+
+    /**
+     * @ORM\ManytoMany(targetEntity="AppBundle\Entity\Product", mappedBy="promotions")
+     */
+
+    private $products;
+
+    /**
+     * @ORM\ManytoMany(targetEntity="AppBundle\Entity\Category")
+     *  @ORM\JoinTable(name="categories_promotions",
+     *      joinColumns={@ORM\JoinColumn(name="promotion_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
+
+    private $categories;
+
+    public function __construct() {
+        $this->products = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
 
     /**
@@ -123,6 +153,59 @@ class Promotion
         $this->end = $end;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
     }
 }
 

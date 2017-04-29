@@ -15,7 +15,7 @@ services:
 
     price_calculator:
             class: AppBundle\Service\PriceCalculator
-            arguments: ['@repo.promotions']
+            arguments: ['@promotions_manager']
 
 
     repo.promotions:
@@ -25,6 +25,6 @@ services:
             - \AppBundle\Entity\Promotion
 
 
-#    promotions_manager:
-#        class: AppBundle\Service\PromotionManager
-#        arguments: ['@repo.promotions']
+    promotions_manager:
+        class: AppBundle\Service\PromotionManager
+        arguments: ['@repo.promotions']

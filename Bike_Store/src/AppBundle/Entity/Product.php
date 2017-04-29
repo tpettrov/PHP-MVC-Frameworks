@@ -13,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+
+    const FOR_SALE = 1;
+
     /**
      * @var int
      *
@@ -78,14 +81,13 @@ class Product
      * @ORM\Column(name="forsale", type="boolean")
      */
 
-    private $forsale;
+    private $forsale = self::FOR_SALE;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Promotion")
-     * @ORM\JoinTable(name="products_promotions",
-     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="promotion_id", referencedColumnName="id")}
-     *     )
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Promotion", inversedBy="products")
+     * @ORM\JoinTable(name="products_promotions")
+     *
+     *
      */
 
     private $promotions;
@@ -290,28 +292,6 @@ class Product
     {
         $this->promotions = $promotions;
     }
-
-    /**
-     * @return mixed
-     *
-     *
-     */
-
-    public function getPromotionsId(){
-
-        $promotionsIdArray = [];
-
-        foreach ($this->promotions as $promotion) {
-
-            /** @var $promotion Promotion */
-
-            $promotionsIdArray[] = $promotion->getId();
-
-        }
-
-        return $promotionsIdArray;
-    }
-
 
 }
 

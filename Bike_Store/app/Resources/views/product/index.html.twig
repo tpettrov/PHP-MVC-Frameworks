@@ -5,23 +5,28 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
                 <td>{{ product.model }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ dump(calc.calculate(product)) }}</td>
+
+                    <td>{{ product.price }}</td>
+
+                    <td>
+
+                        <p class="alert-danger">{{ calc.calculate(product) }}</p></td>
+
                 <td>{{ product.image }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>
