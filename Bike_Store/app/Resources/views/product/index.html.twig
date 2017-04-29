@@ -21,6 +21,7 @@
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
                 <td>{{ product.model }}</td>
                 <td>{{ product.price }}</td>
+                <td>{{ dump(calc.calculate(product)) }}</td>
                 <td>{{ product.image }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>

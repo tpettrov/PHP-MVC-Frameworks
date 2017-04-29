@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -80,14 +81,31 @@ class Product
     private $forsale;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Promotion")
+     * @ORM\JoinTable(name="products_promotions",
+     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="promotion_id", referencedColumnName="id")}
+     *     )
+     */
+
+    private $promotions;
+
+    public function __construct()
+    {
+        $this->promotions = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
      */
+
     public function getId()
     {
         return $this->id;
     }
+
 
     /**
      * Get model
@@ -255,6 +273,43 @@ class Product
     public function setForsale($forsale)
     {
         $this->forsale = $forsale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPromotions()
+    {
+        return $this->promotions;
+    }
+
+    /**
+     * @param mixed $promotions
+     */
+    public function setPromotions($promotions)
+    {
+        $this->promotions = $promotions;
+    }
+
+    /**
+     * @return mixed
+     *
+     *
+     */
+
+    public function getPromotionsId(){
+
+        $promotionsIdArray = [];
+
+        foreach ($this->promotions as $promotion) {
+
+            /** @var $promotion Promotion */
+
+            $promotionsIdArray[] = $promotion->getId();
+
+        }
+
+        return $promotionsIdArray;
     }
 
 

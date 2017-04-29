@@ -31,8 +31,11 @@ class ProductController extends Controller
 
         $products = $em->getRepository('AppBundle:Product')->findAvailableProducts();
 
+        $calc = $this->get('price_calculator');
+
         return $this->render('product/index.html.twig', array(
             'products' => $products,
+            'calc' => $calc
         ));
     }
 
@@ -111,15 +114,16 @@ class ProductController extends Controller
     public function showByCategoryAction(int $category_id)
     {
 
-
         $em = $this->getDoctrine()->getManager();
-
 
         $products = $em->getRepository('AppBundle:Product')
             ->findAvailableProducts($category_id);
 
+        $calc = $this->get('price_calculator');
+
         return $this->render('product/index.html.twig', array(
             'products' => $products,
+            'calc' => $calc
         ));
 
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Promotion
  *
- * @ORM\Table(name="promotion")
+ * @ORM\Table(name="promotions")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PromotionRepository")
  */
 class Promotion
@@ -31,14 +31,14 @@ class Promotion
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start", type="datetime")
+     * @ORM\Column(name="start", type="date")
      */
     private $start;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end", type="datetime")
+     * @ORM\Column(name="end", type="date")
      */
     private $end;
 

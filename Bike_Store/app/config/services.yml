@@ -12,3 +12,19 @@ services:
             arguments: ['@security.http_utils', '@service_container', {}]
             tags:
                 - { name: 'my.logger', channel: 'security'}
+
+    price_calculator:
+            class: AppBundle\Service\PriceCalculator
+            arguments: ['@repo.promotions']
+
+
+    repo.promotions:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - \AppBundle\Entity\Promotion
+
+
+#    promotions_manager:
+#        class: AppBundle\Service\PromotionManager
+#        arguments: ['@repo.promotions']
