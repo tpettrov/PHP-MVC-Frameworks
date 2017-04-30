@@ -5,11 +5,11 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                {#<th>Actions</th>#}
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            {#<th>Actions</th>#}
+        </tr>
         </thead>
         <tbody>
         {% for key,category in categories %}
@@ -33,7 +33,7 @@
     </table>
 
 
-            <a class="btn btn-primary" href="{{ path('category_new') }}">Add a new category</a>
+    <a class="btn btn-primary" href="{{ path('category_new') }}">Add a new category</a>
 
 
 {% endblock %}

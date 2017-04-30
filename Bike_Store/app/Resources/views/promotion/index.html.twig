@@ -5,13 +5,13 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Percent</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Percent</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for promotion in promotions %}
@@ -38,6 +38,6 @@
 
 
 
-            <a class="btn btn-primary" href="{{ path('promotion_new') }}">Create a new promotion</a>
+    <a class="btn btn-primary" href="{{ path('promotion_new') }}">Create a new promotion</a>
 
 {% endblock %}

@@ -28,7 +28,7 @@ class Product
 
     /**
      * @var string
-     *  @Assert\NotBlank()
+     * @Assert\NotBlank()
      * @ORM\Column(name="model", type="string", length=255)
      */
     private $model;

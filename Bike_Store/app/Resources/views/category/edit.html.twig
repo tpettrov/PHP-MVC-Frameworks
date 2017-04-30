@@ -4,14 +4,14 @@
 
     <h1>Category edit</h1>
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input class="btn btn-primary" type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <input class="btn btn-primary" type="submit" value="Edit"/>
     {{ form_end(edit_form) }}
 
 
-            {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-danger" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 
     <a href="{{ path('category_index') }}">Back to the list</a>
 

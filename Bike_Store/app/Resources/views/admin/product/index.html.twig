@@ -5,16 +5,16 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for product in products %}
@@ -42,6 +42,6 @@
     </table>
 
 
-            <a class="btn btn-primary" href="{{ path('product_new') }}">Create a new product</a>
+    <a class="btn btn-primary" href="{{ path('product_new') }}">Create a new product</a>
 
 {% endblock %}
