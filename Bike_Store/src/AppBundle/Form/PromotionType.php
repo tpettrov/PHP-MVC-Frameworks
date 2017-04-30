@@ -17,6 +17,7 @@ class PromotionType extends AbstractType
             ->add('start')
             ->add('end')
             ->add('name')
+            ->add('categories')
             ->add('isGlobal');
     }
 

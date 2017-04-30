@@ -49,7 +49,6 @@ class HomeController extends Controller
     public function showUserProducts()
     {
 
-
         $user = $this->getUser();
         $calc = $this->get('price_calculator');
 
