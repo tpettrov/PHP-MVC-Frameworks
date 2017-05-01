@@ -27,12 +27,12 @@ class PromotionController extends Controller
 
         $promotions = $em->getRepository('AppBundle:Promotion')->findAll();
 
-        // $activePromotions = $em->getRepository('AppBundle:Promotion')->fetchActivePromotions();
+        $activePromotions = $em->getRepository('AppBundle:Promotion')->fetchActivePromotions();
 
 
         return $this->render('promotion/index.html.twig', array(
-            'promotions' => $promotions
-            //'activePromotions' => $activePromotions,
+            'promotions' => $promotions,
+            'activePromotions' => $activePromotions,
         ));
     }
 

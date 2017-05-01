@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Repository;
-
 use Doctrine\Common\Collections\ArrayCollection;
 
 
@@ -25,10 +24,11 @@ class PromotionRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere($qb->expr()->gte('p.end', ':today'))
             ->setParameter(':today', $today->format('Y-m-d'));
 
-        $result = $qb->getQuery()->getResult();
+         $result = $qb->getQuery()->getResult();
 
 
         return $promotions = new ArrayCollection($result);
+
 
 
     }

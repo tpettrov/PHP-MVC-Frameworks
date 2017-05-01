@@ -13,23 +13,21 @@
 
         {% for key,product in products %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key + 1 }}</a></td>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key + 1}}</a></td>
                 <td>{{ product.model }}</td>
                 {% if calculator.calculate(product) != product.price %}
 
-                    <td>
-                        <del>{{ product.price }}</del>
-                        <p class="alert-danger">{{ calculator.calculate(product) }}</p></td>
+                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calculator.calculate(product) }}</p></td>
 
                 {% else %}
 
-                    <td>{{ product.price }}</td>
+                <td>{{ product.price }}</td>
                 {% endif %}
                 <td>
 
-                    <a href="{{ path('product_show', { 'id': product.id }) }}">More</a>
+                            <a href="{{ path('product_show', { 'id': product.id }) }}">More</a>
 
-                    <a href="{{ path('product_edit', { 'id': product.id }) }}">Remove</a>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}">Remove</a>
 
                 </td>
             </tr>
@@ -39,7 +37,7 @@
 
     </table>
 
-    <a class="btn btn-primary" href="{{ path('order_cart', {'id' : cart.id}) }}">Place Order</a>
+            <a class="btn btn-primary" href="{{ path('order_cart', {'id' : cart.id}) }}">Place Order</a>
 
 {% else %}
 

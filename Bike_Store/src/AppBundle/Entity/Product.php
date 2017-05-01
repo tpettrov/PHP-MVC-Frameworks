@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -28,7 +27,7 @@ class Product
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="model", type="string", length=255)
      */
     private $model;
@@ -49,14 +48,14 @@ class Product
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var int
-     * @Assert\NotNull()
+     *
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;

@@ -83,10 +83,11 @@ class ProductController extends Controller
     {
 
         $addToCartFrom = $this->createAddToCartForm($product);
-
+        $calc = $this->get('price_calculator');
         return $this->render('product/show.html.twig', array(
             'product' => $product,
             'addtocart_form' => $addToCartFrom->createView(),
+            'calculator' => $calc
         ));
     }
 

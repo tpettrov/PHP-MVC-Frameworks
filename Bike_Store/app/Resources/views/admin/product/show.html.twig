@@ -1,34 +1,34 @@
-{% extends ':admin:admin_index.html.twig' %}
+{% extends 'admin/admin_index.html.twig' %}
 
 {% block content %}
     <h1>Product</h1>
 
     <table>
         <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ product.id }}</td>
-        </tr>
-        <tr>
-            <th>Model</th>
-            <td>{{ product.model }}</td>
-        </tr>
-        <tr>
-            <th>Price</th>
-            <td>{{ product.price }}</td>
-        </tr>
-        <tr>
-            <th>Image</th>
-            <td>{{ product.image }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ product.description }}</td>
-        </tr>
-        <tr>
-            <th>Quantity</th>
-            <td>{{ product.quantity }}</td>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ product.model }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ product.image }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ product.quantity }}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -42,7 +42,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
+                <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-</head>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
 
 <nav class="navbar navbar-inverse navbar navbar-fixed-top">
     <div class="container-fluid">
@@ -21,28 +21,27 @@
             <ul class="nav navbar-nav navbar-right">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li><p class="navbar-text">Welcome, {{ app.user.username }}</p></li>
-                <li><a href="{{ path('user_bought_products') }}">My Products {{ app.user.getownedproductscount }}</a>
-                </li>
-                <li><a href="{{ path('cart_show') }}">Cart:{{ app.user.cart.getproductcount }} </a></li>
-                <li><p class="navbar-text">Money: {{ app.user.cash }} BGN </p></li>
-                <li><a href="{{ path('logout') }}">Logout</a></li>
+                <li><a href="{{ path('user_bought_products')}}">My Products {{ app.user.getownedproductscount }}</a></li>
+                <li><a href="{{ path('cart_show')}}">Cart:{{ app.user.cart.getproductcount }} </a></li>
+                <li><p class="navbar-text">Money: {{app.user.cash}} BGN </p></li>
+            <li><a href="{{ path('logout') }}">Logout</a></li>
             {% else %}
 
 
-                <li><a href="{{ path('register_user') }}">Register</a></li>
-                <li><a href="{{ path('login_user') }}">Login</a></li>
-                </ul>
+            <li><a href="{{ path('register_user') }}">Register</a></li>
+            <li><a href="{{ path('login_user') }}">Login</a></li>
+            </ul>
 
             {% endif %}
 
         {% endblock %}
 
 
-    </div>
-</nav>
+            </div>
+        </nav>
 
 
-<body style="padding-top: 65px; padding-bottom: 65px">
+    <body style="padding-top: 65px; padding-bottom: 65px">
 <div>
 
     {% for type, flash_messages in app.session.flashBag.all %}
@@ -67,13 +66,13 @@
     </div>
 </div>
 
-<div class="navbar navbar-inverse navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        {% block footer %}
-            <p class="navbar-text">Bike Store 2017. All rights reserved. </p>
-        {% endblock %}
-    </div>
-</div>
+        <div class="navbar navbar-inverse navbar navbar-fixed-bottom">
+            <div class="container-fluid">
+                {% block footer %}
+                <p class="navbar-text">Bike Store 2017. All rights reserved. </p>
+                {% endblock %}
+            </div>
+        </div>
 
 </body>
 </html>

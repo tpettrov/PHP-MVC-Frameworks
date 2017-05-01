@@ -21,9 +21,7 @@
 
                 {% if calc.calculate(product) != product.price %}
 
-                    <td>
-                        <del>{{ product.price }}</del>
-                        <p class="alert-danger">{{ calc.calculate(product) }}</p></td>
+                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calc.calculate(product) }}</p></td>
 
                 {% else %}
 
@@ -32,10 +30,12 @@
                 {% endif %}
 
 
+
+
                 <td>{{ product.quantity }}</td>
                 <td>
 
-                    <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
+                            <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
 
                 </td>
             </tr>

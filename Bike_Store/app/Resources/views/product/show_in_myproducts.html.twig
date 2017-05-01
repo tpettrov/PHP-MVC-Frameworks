@@ -24,16 +24,14 @@
             <tr>
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key+1 }}</a></td>
                 <td>{{ product.model }}</td>
-                {% if calculator.calculate(product) != product.price %}
+            {% if calculator.calculate(product) != product.price %}
 
-                    <td>
-                        <del>{{ product.price }}</del>
-                        <p class="alert-danger">{{ calculator.calculate(product) }}</p></td>
+                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calculator.calculate(product) }}</p></td>
 
-                {% else %}
+            {% else %}
 
-                    <td>{{ product.price }}</td>
-                {% endif %}
+                <td>{{ product.price }}</td>
+            {% endif %}
                 <td>{{ product.image }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>
@@ -47,7 +45,7 @@
 
 
                         <a class="btn btn-danger" href="{{ path('switch_sale', { 'id': product.id }) }}">Stop Sale</a>
-                    {% endif %}
+                        {% endif %}
 
                 </td>
             </tr>

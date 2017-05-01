@@ -37,5 +37,6 @@ security:
     access_control:
               # require ROLE_ADMIN & ROLE_EDITOR for /admin*
               - { path: ^/admin/user, roles: ROLE_ADMIN }
+              - { path: ^/admin/promotion, roles: ROLE_ADMIN }
               - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_EDITOR] }
 

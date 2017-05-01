@@ -67,7 +67,7 @@ class Promotion
 
     /**
      * @ORM\ManytoMany(targetEntity="AppBundle\Entity\Category")
-     * @ORM\JoinTable(name="categories_promotions",
+     *  @ORM\JoinTable(name="categories_promotions",
      *      joinColumns={@ORM\JoinColumn(name="promotion_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
      *      )
@@ -75,8 +75,7 @@ class Promotion
 
     private $categories;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->products = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }

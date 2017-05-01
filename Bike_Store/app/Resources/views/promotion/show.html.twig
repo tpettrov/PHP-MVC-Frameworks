@@ -5,22 +5,22 @@
 
     <table class="table">
         <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ promotion.id }}</td>
-        </tr>
-        <tr>
-            <th>Percent</th>
-            <td>{{ promotion.percent }}</td>
-        </tr>
-        <tr>
-            <th>Start</th>
-            <td>{% if promotion.start %}{{ promotion.start|date('Y-m-d H:i:s') }}{% endif %}</td>
-        </tr>
-        <tr>
-            <th>End</th>
-            <td>{% if promotion.end %}{{ promotion.end|date('Y-m-d H:i:s') }}{% endif %}</td>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ promotion.id }}</td>
+            </tr>
+            <tr>
+                <th>Percent</th>
+                <td>{{ promotion.percent }}</td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{% if promotion.start %}{{ promotion.start|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{% if promotion.end %}{{ promotion.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
         </tbody>
     </table>
 
@@ -33,7 +33,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-            <input type="submit" value="Delete">
+                <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

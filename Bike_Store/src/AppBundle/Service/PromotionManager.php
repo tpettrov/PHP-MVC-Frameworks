@@ -40,24 +40,22 @@ class PromotionManager
     }
 
 
-    public function getActivePromotionsProducts()
-    {
+    public function getActivePromotionsProducts(){
 
-        foreach ($this->active_promotions as $promotion) {
+    foreach ($this->active_promotions as $promotion) {
 
-            /** @var Promotion $promotion */
-            $this->active_promotions_products = array_merge($promotion->getProducts()->toArray(), $this->active_promotions_products);
+        /** @var Promotion $promotion */
+         $this->active_promotions_products = array_merge($promotion->getProducts()->toArray(), $this->active_promotions_products);
 
-        }
+    }
 
-        return new ArrayCollection($this->active_promotions_products);
+    return new ArrayCollection($this->active_promotions_products);
 
 
     }
 
 
-    public function getActivePromotionsCategories()
-    {
+    public function getActivePromotionsCategories(){
 
         foreach ($this->active_promotions as $promotion) {
 
@@ -70,6 +68,8 @@ class PromotionManager
 
 
     }
+
+
 
 
 }

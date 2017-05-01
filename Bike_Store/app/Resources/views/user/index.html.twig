@@ -5,14 +5,14 @@
 
     <table class="table">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Cash</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Cash</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
         {% for user in users %}
@@ -38,6 +38,6 @@
     </table>
 
 
-    <a class="btn btn-primary" href="{{ path('user_new') }}">Create a new user</a>
+            <a class="btn btn-primary" href="{{ path('user_new') }}">Create a new user</a>
 
 {% endblock %}
