@@ -82,6 +82,12 @@ class ProductController extends Controller
     public function showAction(Product $product)
     {
 
+        if ($product->getQuantity() == 0) {
+
+            $this->addFlash('warning', 'Sorry this item is no longer available');
+            return $this->redirectToRoute('product_index');
+        }
+
         $addToCartFrom = $this->createAddToCartForm($product);
         $calc = $this->get('price_calculator');
         return $this->render('product/show.html.twig', array(

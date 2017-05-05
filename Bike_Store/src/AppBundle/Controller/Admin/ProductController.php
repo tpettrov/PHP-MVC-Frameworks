@@ -130,7 +130,8 @@ class ProductController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($product);
+            $product->setForsale(false);
+            $em->persist($product);
             $em->flush();
             $this->addFlash('success', 'Product deleted successfully!');
         }
