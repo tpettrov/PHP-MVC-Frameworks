@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use AppBundle\Repository\RoleRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -40,7 +41,7 @@ class AddEditUserType extends AbstractType
                 'label' => 'Choose a role:',
                 'expanded' => true,
                 'multiple' => true,
-            ]);
+            ])->add('isNotBanned', CheckboxType::class, array('label' => 'Not banned'));
 
 
     }
