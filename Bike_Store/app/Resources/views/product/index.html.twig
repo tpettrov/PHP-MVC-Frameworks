@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
     <h1>Products list</h1>
 
     <table class="table">
@@ -42,5 +42,56 @@
         {% endfor %}
         </tbody>
     </table>
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+    <div id="products" class="row list-group">
+    {% for key,product in products %}
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src='/images/bike/{{ product.image }}' alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{ product.model }}</h4>
+                    <p class="group inner list-group-item-text">
+                        {{ product.description }}</p>
+                    <div class="row">
+
+                        {% if calc.calculate(product) != product.price %}
+
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead" style="color: red;">
+                                    {{ calc.calculate(product)}}</p>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    Old price: <s>{{ product.price }}</s></p>
+                            </div>
+
+                            {% else %}
+
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        {{ product.price }}</p>
+                                </div>
+
+                        {% endif %}
+
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+
 
 {% endblock %}

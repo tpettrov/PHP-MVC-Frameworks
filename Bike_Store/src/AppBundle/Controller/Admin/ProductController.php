@@ -46,18 +46,37 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->flush();
 
-            return $this->redirectToRoute('product_show', array('id' => $product->getId()));
+
+            $file = $product->getImageForm();
+
+            if (!$file) {
+                //$form->get('image_form')->addError(new FormError('Image is required'));
+            } else {
+                $filename = md5($product->getModel() . '' . $product->getCategory());
+
+                $file->move(
+                    $this->get('kernel')->getRootDir() . '/../web/images/bike/',
+                    $filename
+                );
+
+                $product->setImage($filename);
+
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($product);
+                $em->flush();
+
+                return $this->redirectToRoute('product_show_admin', array('id' => $product->getId()));
+            }
         }
 
-        return $this->render('admin/product/new.html.twig', array(
-            'product' => $product,
-            'form' => $form->createView(),
-        ));
-    }
+            return $this->render('admin/product/new.html.twig', array(
+                'product' => $product,
+                'form' => $form->createView(),
+            ));
+        }
+
 
     /**
      * Finds and displays a product entity.

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -45,6 +46,13 @@ class Product
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Image(mimeTypes={"image/png", "image/jpeg"}, maxSize="5M")
+     */
+
+    private $image_form;
 
     /**
      * @var string
@@ -291,6 +299,22 @@ class Product
     public function setPromotions($promotions)
     {
         $this->promotions = $promotions;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageForm()
+    {
+        return $this->image_form;
+    }
+
+    /**
+     * @param mixed $image_form
+     */
+    public function setImageForm($image_form)
+    {
+        $this->image_form = $image_form;
     }
 
 }
