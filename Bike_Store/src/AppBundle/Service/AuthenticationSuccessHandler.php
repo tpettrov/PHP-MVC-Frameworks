@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\LoginHandler;
+namespace AppBundle\Service;
 
 use AppBundle\Entity\Cart;
 use AppBundle\Entity\User;

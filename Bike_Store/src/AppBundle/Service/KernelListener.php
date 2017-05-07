@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\EventListener;
+namespace AppBundle\Service;
 
 use AppBundle\Repository\blackIPRepository;
 use Symfony\Component\HttpFoundation\Response;
