@@ -1,0 +1,37 @@
+{% extends ':admin:admin_index.html.twig' %}
+
+{% block content %}
+    <h1>Blackips list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for key,blackIP in blackIPs %}
+            <tr>
+                <td><a href="{{ path('blackip_show', { 'id': blackIP.id }) }}">{{ key + 1 }}</a></td>
+                <td>{{ blackIP.address }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blackip_show', { 'id': blackIP.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blackip_edit', { 'id': blackIP.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-primary" href="{{ path('blackip_new') }}">Add a new blackIP</a>
+
+{% endblock %}

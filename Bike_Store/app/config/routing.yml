@@ -1,3 +1,7 @@
+app_black_ip:
+    resource: "@AppBundle/Controller/Admin/BlackIPController.php"
+    type:     annotation
+
 app:
     resource: '@AppBundle/Controller'
     type: annotation

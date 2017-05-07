@@ -28,3 +28,15 @@ services:
     promotions_manager:
         class: AppBundle\Service\PromotionManager
         arguments: ['@repo.promotions']
+
+    app.kernel_listener:
+            class: AppBundle\EventListener\KernelListener
+            tags:
+                - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            arguments: ['@repo.BlackIP']
+
+    repo.blackIP:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository ]
+        arguments:
+            - \AppBundle\Entity\BlackIP
