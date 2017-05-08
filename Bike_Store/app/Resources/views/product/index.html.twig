@@ -1,50 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Products list</h1>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Number</th>
-            <th>Model</th>
-            <th>Price</th>
-            <th>Quantity</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        {% for key,product in products %}
-            <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ key+1 }}</a></td>
-                <td>{{ product.model }}</td>
-
-                {% if calc.calculate(product) != product.price %}
-
-                <td><del>{{ product.price }}</del><p class="alert-danger">{{ calc.calculate(product) }}</p></td>
-
-                {% else %}
-
-                    <td>{{ product.price }}</td>
-
-                {% endif %}
-
-
-
-
-                <td>{{ product.quantity }}</td>
-                <td>
-
-                            <a class="btn btn-primary" href="{{ path('product_show', { 'id': product.id }) }}">Show More</a>
-
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-{% endblock %}
-
 {% block content %}
 
 
