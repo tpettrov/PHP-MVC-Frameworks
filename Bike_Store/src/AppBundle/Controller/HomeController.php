@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Cart;
+use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class HomeController extends Controller
 {
@@ -79,4 +82,5 @@ class HomeController extends Controller
             'calculator' => $calc
         ));
     }
+
 }

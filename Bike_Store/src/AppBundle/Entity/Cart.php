@@ -110,6 +110,22 @@ class Cart
 
     }
 
+    /**
+     *
+     * add product to the Cart
+     *
+     * @param Product $product
+     *
+     */
+
+    public function removeProduct(Product $product)
+    {
+
+        return $this->products->removeElement($product);
+
+
+    }
+
 
     /**
      * @return int

@@ -153,7 +153,7 @@ class ProductController extends Controller
 
             /** @var User $user */
             $user = $this->getUser();
-
+            // check if user has already this product
             if ($product->getOwner() == $user) {
 
                 $this->addFlash('warning', "You already own this product!");
@@ -171,6 +171,11 @@ class ProductController extends Controller
 
             /** @var Cart $userCart */
             $userCart = $user->getCart();
+            // check if product is already in Cart
+            if (in_array($product, $userCart->getProductsArray())) {
+                $this->addFlash('warning', "Product already in Cart. Please checkout !");
+                return $this->redirectToRoute('product_index');
+            }
 
             // adding the product and increasing price of Cart, setting status to True
             $userCart->addProduct($product);

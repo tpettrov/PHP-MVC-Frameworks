@@ -61,23 +61,25 @@
                         {{ product.description }}</p>
                     <div class="row">
 
-                        {% if calc.calculate(product) != product.price %}
+                        {%  set promotion_price = calc.calculate(product) %}
+                        {%  set price = product.price %}
+                        {% if promotion_price != product.price %}
 
                             <div class="col-xs-12 col-md-6">
                                 <p class="lead" style="color: red;">
-                                    {{ calc.calculate(product)}}</p>
+                                    {{ promotion_price}}</p>
                             </div>
 
                             <div class="col-xs-12 col-md-6">
                                 <p class="lead">
-                                    Old price: <s>{{ product.price }}</s></p>
+                                    Old price: <s>{{ price }}</s></p>
                             </div>
 
                             {% else %}
 
                                 <div class="col-xs-12 col-md-6">
                                     <p class="lead">
-                                        {{ product.price }}</p>
+                                        {{ price }}</p>
                                 </div>
 
                         {% endif %}

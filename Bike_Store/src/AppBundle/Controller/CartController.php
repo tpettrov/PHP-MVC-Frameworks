@@ -59,7 +59,7 @@ class CartController extends Controller
 
     public function orderCartAction(Cart $cart)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user = $this->getUser();
         /** @var User $user */
 
@@ -92,6 +92,34 @@ class CartController extends Controller
 
     }
 
+    /**
+     * @Route("/{id}", name="remove_product_from_cart")
+     * @param Product $product
+     */
+
+    public function removeProductFromCartAction(Product $product){
+        //dump($product);exit;
+        /** @var User $user */
+        $user = $this->getUser();
+        /** @var Cart $cart */
+        $cart = $user->getCart();
+        $cart->removeProduct($product);
+        $cart->setCost($cart->getCost() - $product->getPrice());
+
+        if ($cart->getProductCount() == 0) {
+
+            $cart->setStatus(false);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cart);
+        $em->flush();
+
+
+
+        $this->addFlash('success', 'Item Removed from Cart !');
+        return $this->redirectToRoute('cart_show');
+    }
 
 
 }
