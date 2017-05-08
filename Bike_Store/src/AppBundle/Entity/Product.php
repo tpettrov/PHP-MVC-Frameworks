@@ -28,14 +28,15 @@ class Product
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="model", type="string", length=255)
      */
     private $model;
 
     /**
      * @var decimal
-     *
+     * @Assert\GreaterThanOrEqual(0)
+     * @Assert\LessThan(10000)
      * @ORM\Column(name="price", type="decimal", precision=5, scale=2)
      */
     private $price;
@@ -48,7 +49,7 @@ class Product
     private $image;
 
     /**
-     * @Assert\NotBlank()
+     *
      * @Assert\Image(mimeTypes={"image/png", "image/jpeg"}, maxSize="5M")
      */
 
@@ -56,14 +57,16 @@ class Product
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThanOrEqual(0)
+     * @Assert\LessThan(99)
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;

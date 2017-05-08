@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * BlackIP
@@ -23,7 +24,7 @@ class BlackIP
 
     /**
      * @var string
-     *
+     * @Assert\Ip
      * @ORM\Column(name="address", type="string", length=255, unique=true)
      */
     private $address;

@@ -6,6 +6,7 @@ use AppBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -122,6 +123,24 @@ class ProductController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+
+            if ($product->getImageForm() instanceof UploadedFile) {
+                /** @var UploadedFile $file */
+                $file = $product->getImageForm();
+
+                $filename = md5($product->getModel() . '' . $product->getDescription());
+
+                $file->move(
+                    $this->get('kernel')->getRootDir() . '/../web/images/bikes/',
+                    $filename
+                );
+
+                $product->setImage($filename);
+            }
+
+
+
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Product edited successfully!');
