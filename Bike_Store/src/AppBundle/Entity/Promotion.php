@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Promotion
@@ -24,7 +25,7 @@ class Promotion
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255, unique=false)
      */
 
@@ -32,21 +33,22 @@ class Promotion
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan(0)
+     * @Assert\LessThanOrEqual(100)
      * @ORM\Column(name="percent", type="integer")
      */
     private $percent;
 
     /**
      * @var \DateTime
-     *
+     *  @Assert\Date()
      * @ORM\Column(name="start", type="date")
      */
     private $start;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\Date()
      * @ORM\Column(name="end", type="date")
      */
     private $end;
