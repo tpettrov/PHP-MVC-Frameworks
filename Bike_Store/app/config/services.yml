@@ -40,3 +40,6 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository ]
         arguments:
             - \AppBundle\Entity\BlackIP
+
+    app.security.access_denied_handler:
+            class: AppBundle\Service\AccessDeniedHandler

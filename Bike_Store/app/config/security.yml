@@ -13,6 +13,7 @@ security:
                 property: eMail
 
     firewalls:
+
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -33,6 +34,7 @@ security:
             logout:
                 path: /logout
                 target: /
+            access_denied_handler: app.security.access_denied_handler
 
     access_control:
               # require ROLE_ADMIN & ROLE_EDITOR for /admin*
