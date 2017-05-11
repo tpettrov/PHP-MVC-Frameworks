@@ -257,11 +257,11 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getOwner()
     {
-        return $this->owner;
+        return $this->owner ? $this->owner->getUserName() : 'store';
     }
 
     /**

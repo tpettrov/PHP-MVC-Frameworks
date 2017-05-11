@@ -36,10 +36,8 @@
     </table>
 
 
-    Active promotions: {{ dump(activePromotions) }}
-    <ul>
-        <li>
-            <a href="{{ path('promotion_new') }}">Create a new promotion</a>
-        </li>
-    </ul>
+    {#Active promotions: {{ dump(activePromotions) }}#}
+
+            <a class="btn btn-primary" href="{{ path('promotion_new') }}">Create a new promotion</a>
+
 {% endblock %}
