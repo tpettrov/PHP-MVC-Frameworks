@@ -484,5 +484,10 @@ class User implements AdvancedUserInterface, \Serializable
     {
         $this->isNotBanned = $isBanned;
     }
+
+    public function __toString()
+    {
+        return $this->fName . " " . $this->lName;
+    }
 }
 
