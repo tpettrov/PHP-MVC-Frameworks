@@ -41,14 +41,14 @@ class Promotion
 
     /**
      * @var \DateTime
-     *  @Assert\Date()
+     *
      * @ORM\Column(name="start", type="date")
      */
     private $start;
 
     /**
      * @var \DateTime
-     * @Assert\Date()
+     *
      * @ORM\Column(name="end", type="date")
      */
     private $end;

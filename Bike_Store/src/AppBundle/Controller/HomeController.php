@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cart;
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -81,6 +82,24 @@ class HomeController extends Controller
             'products' => $cart->getProducts(),
             'calculator' => $calc
         ));
+    }
+
+    /**
+     * @Route("/aaa", name="blabla")
+     */
+
+    public function examAction (){
+
+        $em = $this->getDoctrine()->getManager();
+        $role = new Role();
+        $role->setName('Pesho');
+
+        $em->persist($role);
+        $em->flush();
+
+        return $this->redirectToRoute('product_index');
+
+
     }
 
 }
